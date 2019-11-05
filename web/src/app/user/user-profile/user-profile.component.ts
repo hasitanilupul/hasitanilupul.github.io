@@ -50,16 +50,16 @@ export class UserProfileComponent implements OnInit {
     this.userService.putUser(form.value).subscribe(
       res => {
         this.showSucessMessage1 = true;
-        // this.refreshFoodList();
+        
         setTimeout(() => this.showSucessMessage1 = false, 4000);
       },
       err => {
         if (err.status === 422) {
           this.serverErroeMessages1 = err.error.join('<br/>');
-          // this.refreshFoodList();
+          
         } else {
           this.serverErroeMessages1 = 'Something wrong contact admin.!';
-          // this.refreshFoodList();
+          
         }
       }
     );

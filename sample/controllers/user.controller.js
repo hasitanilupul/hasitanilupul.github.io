@@ -49,21 +49,33 @@ module.exports.userProfile = (req, res, next) =>{
 }
 
 module.exports.upuser = (req, res, next) => {
-    User.findById(req.body._id, (err, user) => {
+    User.findByIdAndUpdate(req.body._id,
+        {  
+            $set: {lName: req.body.lName, fName: req.body.fName, tp: req.body.tp, id: req.body.id, email: req.body.email}
+        },
+        {
+            new: true
+        },
+
+        (err, user) => {
         if (err)
             res.status(500).json({ errmsg: err });
-        user.lName = req.body.lName;
-        user.fName = req.body.fName;
-        user.tp = req.body.tp;
-        user.id = req.body.id;
-        user.email = req.body.email;
-        user.password = req.body.password;
-        user.saltSecret = req.body.saltSecret;
-        user.save((err, user) => {
-            if (err)
-                res.status(500).json({ errmsg: err });
-
+        // user.lName = req.body.lName;
+        // user.fName = req.body.fName;
+        // user.tp = req.body.tp;
+        // user.id = req.body.id;
+        // user.email = req.body.email;
+        // user.password = req.body.password;
+        // user.saltSecret = req.body.saltSecret;
+        else{
             res.status(200).json({ msg: user })
-        })
+        }
+
+        // user.save((err, user) => {
+        //     if (err)
+        //         res.status(500).json({ errmsg: err });
+
+        //     res.status(200).json({ msg: user })
+        // })
     })
 }
