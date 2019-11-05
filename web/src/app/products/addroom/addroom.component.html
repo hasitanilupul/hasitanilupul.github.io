@@ -1,0 +1,149 @@
+<div class="cont">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div class="cont">
+        <br>
+        <br>
+        <h2>Room Details</h2>
+        <table>
+          <thead class="table-header">
+            <tr>
+              <th *ngFor="let head of headsRoom" scope="col">{{head}} </th>
+            </tr>
+          </thead>
+          <tbody class="table-row">
+            <tr *ngFor="let room of rooms">
+              <td>{{room.type}}</td>
+              <td>{{room.price}}</td>
+              <td>{{room.catagory}}</td>
+              <td>{{room.ac}}</td>
+              <td>{{room.capacity}}</td>
+              <td>
+                <a (click)=onEdit(room) data-toggle="modal" data-target="#addroom">Edit &nbsp;</a>
+                <a (click)=deleteRoom(room._id,addroomForm)>Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+
+
+      <div class="modal fade" id="addroom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="background-color: rgba(134, 134, 134, 0.842)">
+            <p align="center" style="font-size:20px;">ADD NEW ROOM</p>
+
+            <div style="width: 100%; margin: auto; border-radius: 8px" class="success" *ngIf="showSucessMessage">
+              <div style="font-size: 18px; text-align: center;">Room Aded Succesfully</div>
+            </div>
+
+            <div class="alert" *ngIf="serverErrorMessages">
+              {{serverErrorMessages}}
+            </div>
+
+            <div align="center">
+              <form #addroomForm="ngForm" (ngSubmit)="onSubmit(addroomForm);" style="width: 100%;">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="addroomService.selectedRoom._id">
+                <input type="text" #type="ngModel" [(ngModel)]="addroomService.selectedRoom.type" name="type"
+                  placeholder="Type">
+                <input type="text" #price="ngModel" [(ngModel)]="addroomService.selectedRoom.price" name="price"
+                  placeholder="Price">
+                <input type="text" #catagory="ngModel" [(ngModel)]="addroomService.selectedRoom.catagory"
+                  name="catagory" placeholder="Catagory">
+                <input type="text" #ac="ngModel" [(ngModel)]="addroomService.selectedRoom.ac" name="ac"
+                  placeholder="AC">
+                <input type="text" #capacity="ngModel" [(ngModel)]="addroomService.selectedRoom.capacity"
+                  name="capacity" placeholder="Capacity">
+                <input type="submit" value="ADD">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <input type="reset" (click)=resetForm(NgForm) value="Add new Room" class="btn btn-primary" data-toggle="modal"
+        data-target="#addroom">
+
+    </div>
+
+    <!-- Second Div -->
+
+    <div class="col-sm-6">
+
+      <div class="cont">
+        <br>
+        <br>
+        <h2>Food Details</h2>
+        <table>
+          <thead class="table-header">
+            <tr>
+              <th *ngFor="let head of headsFood" scope="col">{{head}} </th>
+            </tr>
+          </thead>
+          <tbody class="table-row">
+            <tr *ngFor="let food of foods">
+              <td>{{food.type}}</td>
+              <td>{{food.name}}</td>
+              <td>{{food.price}}</td>
+              <td>
+                <a (click)=onEdit1(food) data-toggle="modal" data-target="#addfood">Edit &nbsp;</a>
+                <a (click)=deleteFood(food._id,addfoodForm)>Delete</a>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+
+
+      <div class="modal fade" id="addfood" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="background-color: rgba(134, 134, 134, 0.842)">
+
+            <p align="center" style="font-size:20px;">ADD NEW FOOD</p>
+
+            <div style="width: 100%; margin: auto; border-radius: 8px" class="success" *ngIf="showSucessMessage1">
+              <div style="font-size: 18px; text-align: center;">Food Aded Succesfully</div>
+            </div>
+
+            <div class="alert" *ngIf="serverErrorMessages">
+              {{serverErrorMessages}}
+            </div>
+
+            <div align="center">
+              <form #addfoodForm="ngForm" (ngSubmit)="one(addfoodForm);">
+                  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="addfoodService.selectedFood._id">
+                <input type="text" #type="ngModel" [(ngModel)]="addfoodService.selectedFood.type" name="type"
+                  placeholder="Food catagory">
+                <input type="text" #name="ngModel" [(ngModel)]="addfoodService.selectedFood.name" name="name"
+                  placeholder="Food name">
+                <input type="text" #price="ngModel" [(ngModel)]="addfoodService.selectedFood.price" name="price"
+                  placeholder="Price">
+                <input type="submit" value="ADD">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <input type="reset" (click)=resetFood(NgForm) value="Add new Food" class="btn btn-primary" data-toggle="modal"
+        data-target="#addfood">
+
+
+    </div>
+  </div>
+</div>

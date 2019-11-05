@@ -1,0 +1,64 @@
+<table *ngIf="userDetails" class="table-fill">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center">User Profile</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>{{userDetails.fName}}</td>
+        </tr>
+
+        <tr>
+            <td>Last Name</td>
+            <td>{{userDetails.lName}}</td>
+        </tr>
+
+        <tr>
+            <td>Email</td>
+            <td>{{userDetails.email}}</td>
+        </tr>
+
+        <tr>
+            <td>TP</td>
+            <td>{{userDetails.tp}}</td>
+        </tr>
+
+        <tr>
+            <td>ID</td>
+            <td>{{userDetails.id}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" class="text-center">
+                <input type="button" (click)="onLogout()" value="Logout" /><br>
+                <input type="button" (click)="onEdit()" data-toggle="modal" data-target="#upuser" value="Update">
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="upuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm);" style="width: 100%;">
+            <input type="hidden" #_id="ngModel" [(ngModel)]="userService.selectedUser._id" name="_id">
+            <input type="text" #fName="ngModel" [(ngModel)]="userService.selectedUser.fName" name="fName"
+                placeholder="F name">
+            <input type="text" #lName="ngModel" [(ngModel)]="userService.selectedUser.lName" name="lName"
+                placeholder="L name">
+            <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email"
+                placeholder="Email">
+            <input type="text" #tp="ngModel" [(ngModel)]="userService.selectedUser.tp" name="tp" placeholder="tp">
+            <input type="text" #id="ngModel" [(ngModel)]="userService.selectedUser.id" name="id" placeholder="ID">
+            <input type="text" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+            required>
+            <input type="hidden" #saltSecret="ngModel" [(ngModel)]="userService.selectedUser.saltSecret"
+                name="saltSecret">
+            <input type="submit" value="UPDATE">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </form>
+    </div>
+</div>

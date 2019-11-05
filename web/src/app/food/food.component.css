@@ -1,0 +1,26 @@
+.container {
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 20px;
+    
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  footer {
+    color: #aaaaaa;
+    padding: 25px;
+    background-color: black;
+    height: 45mm;
+  }
+
+  .food-card{
+    height: 200px;
+    width: 200px;
+  }
+
+  p{
+    text-align: center;
+  }
+  

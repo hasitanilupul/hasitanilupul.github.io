@@ -1,0 +1,315 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="../../assets/img/home/1.jpg" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/2.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/3.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/4.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/5.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/6.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/7.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="../../assets/img/home/8.jpg" alt="Image" />
+            <div class="carousel-caption"></div>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<h1 class="centered">
+    <p class="glow" data-aos="fade-down" data-aos-duration="1500" style="font-family: painter; font-size: 100px">Vilmic
+        Lake Inn</p>
+</h1>
+
+<div class="container" style="background-color: transparent ;">
+    <p>
+        <a href="../room/">
+            <div class="col-sm-3">
+                <div class="scut" data-aos="zoom-in" data-aos-duration="1500">
+
+                    <img src="../../assets/img/icons/book.png" style="height: 80px; padding: 5px">
+                    <p style="color: black">BOOK</p>
+                </div>
+            </div>
+        </a>
+        <a href="../food/">
+            <div class="col-sm-3">
+                <div class="scut" data-aos="zoom-in" data-aos-duration="1500">
+                    <img src="../../assets/img/icons/order.png" style="height: 80px; padding: 5px">
+                    <p style="color: black;">ORDER</p>
+
+                </div>
+            </div>
+        </a>
+        <a href="../contactus/">
+            <div class="col-sm-3">
+                <div class="scut" data-aos="zoom-in" data-aos-duration="1500">
+                    <img src="../../assets/img/icons/contact.png" style="height: 80px; padding: 5px">
+                    <p style="color: black">CONTACT</p>
+                </div>
+            </div>
+        </a>
+        <a href="">
+            <div class="col-sm-3">
+                <div class="scut" data-aos="zoom-in" data-aos-duration="1500">
+                    <img src="../../assets/img/icons/about.png" style="height: 80px; padding: 5px">
+                    <p style="color: black">ABOUTUS</p>
+                </div>
+            </div>
+        </a>
+    </p>
+</div>
+
+<div>
+    <p class="moto">DISCOVER THE JOY OF YOUR OWN HOME</p>
+</div>
+
+<div class="para">
+    <p>
+        Situated within 1.1 km of Gregory Lake, Vilmic Lake Inn & Holiday Bungalow
+        in Nuwara Eliya has a number of amenities including barbecue facilities and
+        a garden. Attractively located in the Lake Gregory district, the property is
+        set 6 km from Hakgala Botanical Garden and 3.3 km from Galway's Land
+        National Park. Free WiFi is available. At the hotel, each room is equipped
+        with a desk. The private bathroom is fitted with a hair dryer. Vilmic Lake
+        Inn & Holiday Bungalow offers a terrace. You can play billiards at the
+        accommodation. Victoria Park of Nuwara Eliya is 3.6 km from Vilmic Lake Inn
+        & Holiday Bungalow.
+    </p>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container para" style="width: 90% ; background-color: transparent">
+    <div class="col-sm-3" *ngFor="let rate of rates">
+        <div class="rating-card" data-aos="fade-up" data-aos-duration="1000">
+            <img src="../../assets/img/icons/single_user.png" style="height: 200p; width: 200px"><br>
+            <p>{{rate['name']}}</p>
+            <p>
+                {{rate['comment']}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div align="center" data-aos="fade-up" data-aos-duration="1000">
+    <input class="button" type="button" value="FEEDBACK" (click)="openForm()">
+</div>
+
+<div style="width:42.5%; margin: auto; border-radius: 8px" class="success" *ngIf="showSucessMessage">
+    <div style="font-size: 18px; text-align: center;">Thank you for your Comment 😊</div>
+</div>
+
+<div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+</div>
+<div align="center" [hidden]="val" data-aos="fade">
+
+
+
+    <form #addrateForm="ngForm" (ngSubmit)="onSubmit(addrateForm);" style="width: 50%">
+        <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name" placeholder="Name"
+            required>
+        <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
+            placeholder="Comment" required>
+        <input type="submit" value="ADD" (click)="openForm()">
+    </form>
+
+
+</div>
+
+
+<br><br>
+<div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
+    style="background-color: rgb(37, 29, 51); height: 500px; position: absolute; width: 100%"></div>
+
+<div class="container" style="padding: 0mm; width: 100%; border-radius: 0%; background-color: transparent">
+    <div class="col-sm-6" style="padding: 0%">
+        <div data-aos="fade-right" data-aos-offset="500" data-aos-duration="2000">
+            <img src="../../assets/img/rooms/117749730.jpg" style="width: 100%; height:500px;">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
+            <p style="text-align: left ; font-size: 35px">ROOMS</p><br>
+            <P style="font-size: 20px; text-align: left">Best experence ever & valuble customer service<br>
+                ▪ Fire place <br>
+                ▪ Attach bathrooms per each<br>
+                ▪ Dining room<br>
+                ▪ accommodation for drivers<br>
+                ▪ kitchen</P>
+            <a href="../room/">
+                <p style="padding-top: 50%"><input type="button" value="BOOK NOW"></p>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+
+<div data-aos="fade" data-aos-duration="2000" data-aos-offset="300"
+    style="background-color: rgb(184, 153, 18); height: 150px; width: 100%; color: red; font-family: fantasy">
+    <h1 align="center">
+        <<< &nbsp; SEASONAL OFFER &nbsp;>>>
+    </h1>
+    <h3 align="center">5 Bed rooms with every facility</h3>
+    <h3 align="center">Only 22,000 LKR*</h3>
+
+
+</div><br>
+
+
+<div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
+    style="background-color: rgb(37, 29, 51); height: 500px; position: absolute; width: 100%"></div>
+
+<div class="container" style="padding: 0mm; width: 99%; border-radius: 0%; background-color: transparent">
+    <div class="col-sm-6" style="padding: 0%;">
+        <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
+            <p style="text-align: right ; font-size: 35px">FOODS</p><br>
+            <P style="font-size: 20px; text-align: right">Vast range of foods for choose <br>
+                suited for every type of breakfast, lunch, dinner <br>
+                such with best service and facilities</P>
+            <a href="../food/">
+                <p style="padding-top: 50%; padding-left: 200%"><input type="button" value="ORDER"></p>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="col-sm-6">
+        <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
+            <img src="../../assets/img/food.jpg" style="width: 103%; height:500px;">
+        </div>
+    </div>
+</div>
+
+
+<br><br><br>
+
+<h3 align="center" style="font-family: 'Franklin Gothic Medium'; color: rgb(0, 0, 0);" data-aos="zoom-in"
+    data-aos-duration="2000">💠 5KM to HAKGALA &nbsp;&nbsp;&nbsp;&nbsp; 💠 3KM to the PIDURANGALA MOUNTAINS
+    &nbsp;&nbsp;&nbsp;&nbsp; 💠 2KM to NUWARA ELIYA</h3><br><br>
+
+
+<!-- Hotel features -->
+
+<p data-aos="zoom-in" data-aos-duration="2000" style="font-size: 40px">Aminitiese</p>
+<br><br>
+<div class="container" style="background-color: transparent" data-aos="zoom-in" data-aos-duration="1500">
+    <div class="col-sm-2">
+        <p>
+            <img src="../../assets/img/icons/car.PNG" style="height: 100px"><br><br>
+            Parking
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <p>
+            <img src="../../assets/img/icons/kids.PNG" style="height: 100px"><br><br>
+            Kid's Meal
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <p>
+            <img src="../../assets/img/icons/carehire.PNG" style="height: 100px"><br><br>
+            Car Hire
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <p>
+            <img src="../../assets/img/icons/laundri.PNG" style="height: 100px"><br><br>
+            Laundry
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <p>
+            <img src="../../assets/img/icons/outdoor.PNG" style="height: 100px"><br><br>
+            Outdoor playground
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <p>
+            <img src="../../assets/img/icons/room service.PNG" style="height: 100px"><br><br>
+            Room service
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <br><br>
+        <p>
+            <img src="../../assets/img/icons/wifi.png" style="height: 100px"><br><br>
+            Free wifi
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <br><br>
+        <p>
+            <img src="../../assets/img/icons/BBQ.PNG" style="height: 100px"><br><br>
+            BBQ
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <br><br>
+        <p>
+            <img src="../../assets/img/icons/GAME.PNG" style="height: 100px"><br><br>
+            Game Zone
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <br><br>
+        <p>
+            <img src="../../assets/img/icons/billiads.PNG" style="height: 100px"><br><br>
+            Billiards
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <br><br>
+        <p>
+            <img src="../../assets/img/icons/boat.PNG" style="height: 100px"><br><br>
+            Boat ride
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <br><br>
+        <p>
+            <img src="../../assets/img/icons/kichan.PNG" style="height: 100px"><br><br>
+            shared kitchen
+        </p>
+    </div>
+</div>

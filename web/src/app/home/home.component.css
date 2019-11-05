@@ -1,0 +1,162 @@
+.carousel-inner img {
+  width: 100%;
+  margin: auto;
+  min-height: 200px;
+  max-height: 550px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none;
+  }
+}
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f1f1f1;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 25mm;
+  border-radius: 45px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 0px;
+  padding: 10px;
+}
+
+.glow {
+  font-size: 90px;
+  color: rgba(0, 0, 0, 0.89);
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #3d00e6,
+      0 0 40px #3200e6, 0 0 50px #2a00e6, 0 0 60px #3d00e6, 0 0 70px #5100e6;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #aaaaaa, 0 0 40px #fcfcfc,
+      0 0 50px #ffffff, 0 0 60px #ffffff, 0 0 70px #fcfcfc, 0 0 80px #ffffff;
+  }
+}
+
+.moto {
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 10mm;
+}
+
+.para {
+  padding: 25px;
+  padding-top: 0%;
+  border-radius: 15px;
+  font-size: 4.5mm;
+  text-align: center;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+
+.rating-card {
+  background-color: transparent;
+  width: 300px;
+  height: 370px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.815);
+  border-radius: 15px;
+  perspective: 1000px;
+  position: initial;
+}
+
+.scut {
+  background-color: rgb(146, 146, 146);
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.815);
+  border-radius: 30px;
+  perspective: 1000px;
+  position: initial;
+  text-align: center;
+  
+}
+
+.scut:hover{
+  background: #edebf1;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 370px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(-180deg);
+  border-radius: 15px;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+}
+
+.flip-card-front {
+  background-color: transparent;
+  color: black;
+  z-index: 2;
+  border-radius: 15px;
+}
+
+.flip-card-back {
+  background-color: #838383;
+  color: white;
+  transform: rotateY(180deg);
+  z-index: 1;
+  border-radius: 15px;
+}
+
+footer {
+  color: #aaaaaa;
+  padding: 25px;
+  background-color: black;
+  height: 45mm;
+}
+
+p{
+  text-align: center;
+}

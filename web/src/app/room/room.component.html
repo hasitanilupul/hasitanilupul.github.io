@@ -1,0 +1,52 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  AOS.init();
+</script>
+
+<h1 style="text-align: center">Room types</h1>
+
+<div class="container" *ngFor="let room of rooms">
+  <div class="col-sm-3">
+    <div>
+      <hr>
+      <img src="../../assets/img/rooms/2574268_17072808370054737217.jpg" style="height: 200px; width: 250px">
+
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div style="height: 218px">
+      <hr>
+      <h4 align="center">Details</h4><br>
+      🔹 Room type :&nbsp; 
+      {{room['type']}}
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div style="height: 218px">
+      <hr>
+      <h4 align="center">FEATURES</h4><br>
+      🔹 Catagory : 
+      {{room['catagory']}}<br>
+      🔹 AC : 
+      {{room['ac']}}<br>
+      🔹 Capacity : 
+      {{[room['capacity']]}}
+
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div style="height: 218px">
+      <hr>
+      Price<br>
+      {{room['price']}}<br><br>
+      <input type="submit" (click)=onSubmit() value="BOOK NOW">
+
+    </div>
+  </div>
+
+</div>
