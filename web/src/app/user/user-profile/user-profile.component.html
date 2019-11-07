@@ -40,6 +40,8 @@
     </tbody>
 </table>
 
+<p *ngIf="Admin()"></p>
+
 
 <div class="modal fade" id="upuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -53,7 +55,7 @@
                 placeholder="Email">
             <input type="text" #tp="ngModel" [(ngModel)]="userService.selectedUser.tp" name="tp" placeholder="tp">
             <input type="text" #id="ngModel" [(ngModel)]="userService.selectedUser.id" name="id" placeholder="ID">
-            <input type="text" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+            <input type="hidden" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
             required>
             <input type="hidden" #saltSecret="ngModel" [(ngModel)]="userService.selectedUser.saltSecret"
                 name="saltSecret">

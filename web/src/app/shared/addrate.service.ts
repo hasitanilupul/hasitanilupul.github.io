@@ -27,4 +27,8 @@ export class AddRateService {
     return this.http.get(environment.apiBaseUrl + '/rates');
   }
 
+  deleteitem(_id: string){
+    return this.http.delete('http://localhost:3000/api/deleteitem/' + _id);
+  }
+
 }

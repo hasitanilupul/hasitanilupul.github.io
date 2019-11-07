@@ -51,7 +51,19 @@
         Lake Inn</p>
 </h1>
 
-<div class="container" style="background-color: transparent ;">
+<p *ngIf="role" style="position: absolute;top: 2%; left: 84%; font-size: 15px;"><a routerLink="/addroom">MANAGE </a></p>
+
+<p *ngIf="!isLogged()" style="position: absolute;top: 2%; left: 83%; font-size: 15px;"><a routerLink="/login"><span
+            class="glyphicon glyphicon-log-in"></span> Login</a></p>
+
+<p *ngIf="!isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/signup"><span
+            class="glyphicon glyphicon-user"></span> Register</a></p>
+
+<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/login">
+        <p (click)="logOut()"> LOGOUT</p>
+    </a></p>
+
+<div *ngIf="!role" class="container" style="background-color: transparent ;">
     <p>
         <a href="../room/">
             <div class="col-sm-3">
@@ -112,10 +124,6 @@
 
 
 
-
-
-
-
 <div class="container para" style="width: 90% ; background-color: transparent">
     <div class="col-sm-3" *ngFor="let rate of rates">
         <div class="rating-card" data-aos="fade-up" data-aos-duration="1000">
@@ -124,6 +132,7 @@
             <p>
                 {{rate['comment']}}
             </p>
+            <p *ngIf="role" (click)="deleteItem(rate._id,addrateForm)" style="color:rgb(232, 248, 0);">DELETE</p>
         </div>
     </div>
 </div>

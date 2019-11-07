@@ -30,6 +30,7 @@ router.put('/upuser',ctrlUser.upuser);
 
 router.delete('/delete/:_id',ctrlAddroom.delete);
 router.delete('/deletefood/:_id',ctrlAddfood.deletefood);
+router.delete('/deleteitem/:_id',ctrlRating.deleteitem);
 
 
 

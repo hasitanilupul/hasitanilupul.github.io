@@ -36,3 +36,10 @@ module.exports.rates = (req, res, next) =>{
         }
     );
 }
+
+module.exports.deleteitem = (req, res, next) => {
+    Rate.findByIdAndRemove(req.params._id, (err, doc) => {
+        if (!err){ res.send(doc);}
+        else{console.log('Error in deleting')}
+    })
+}

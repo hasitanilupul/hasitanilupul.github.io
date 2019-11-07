@@ -42,8 +42,10 @@ module.exports.userProfile = (req, res, next) =>{
         (err, user) => {
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
-            else
+            else{
                 return res.status(200).json({ status: true, user : _.pick(user,['_id','fName','lName','email','id','tp']) });
+            }
+               
         }
     );
 }
@@ -60,22 +62,8 @@ module.exports.upuser = (req, res, next) => {
         (err, user) => {
         if (err)
             res.status(500).json({ errmsg: err });
-        // user.lName = req.body.lName;
-        // user.fName = req.body.fName;
-        // user.tp = req.body.tp;
-        // user.id = req.body.id;
-        // user.email = req.body.email;
-        // user.password = req.body.password;
-        // user.saltSecret = req.body.saltSecret;
         else{
             res.status(200).json({ msg: user })
         }
-
-        // user.save((err, user) => {
-        //     if (err)
-        //         res.status(500).json({ errmsg: err });
-
-        //     res.status(200).json({ msg: user })
-        // })
     })
 }

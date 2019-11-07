@@ -11,9 +11,10 @@ import { __param } from 'tslib';
   styleUrls: ['./user-profile.component.css'],
   providers: [UserService]
 })
-export class UserProfileComponent implements OnInit {
-  userDetails;
+export class UserProfileComponent implements OnInit  {
+  userDetails = new User//{email:'',fName:'',id:'',lName:'',tp:'',_id:''};
   user: any[];
+  role;
 
 
   showSucessMessage: boolean;
@@ -27,22 +28,28 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
       res => {
-        this.userDetails = res['user'];
-      },
-      err => { 
-        console.log(err);
         
+        this.userDetails = res['user'];
+        console.log(this.userDetails)
+      },
+      err => {
+        console.log(err);
+
       }
     );
     
+    this.role=localStorage.getItem('admin');
+    
+
   }
 
-  onLogout(){
+  onLogout() {
     this.userService.deleteToken();
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
-  onEdit(user : User){
+  onEdit(user: User) {
     this.userService.selectedUser = this.userDetails;
   }
 
@@ -50,21 +57,32 @@ export class UserProfileComponent implements OnInit {
     this.userService.putUser(form.value).subscribe(
       res => {
         this.showSucessMessage1 = true;
-        
+
         setTimeout(() => this.showSucessMessage1 = false, 4000);
       },
       err => {
         if (err.status === 422) {
           this.serverErroeMessages1 = err.error.join('<br/>');
-          
+
         } else {
           this.serverErroeMessages1 = 'Something wrong contact admin.!';
-          
+
         }
       }
     );
-  
 
-}
+
+  }
+
+  Admin() {
+    if (this.userDetails.email == "admin@gmail.com") {
+      localStorage.setItem('admin', '1');
+      //  console.log(localStorage.getItem('admin'))
+    }
+    else {
+      console.log()
+    }
+
+  }
 
 }

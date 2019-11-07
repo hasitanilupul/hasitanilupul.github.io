@@ -21,6 +21,9 @@ export class UserService {
 
 
 
+
+
+
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private http: HttpClient) { }
@@ -78,12 +81,25 @@ export class UserService {
       return false;
   } 
 
-  isAdmin(){
-    var userPayload = JSON.parse(this.getUserPayload());
-    if(userPayload.email="admin@gmail.com")
-      return true;
-    else
-      return false;
-  }
+  // isAdmin() {
+  //   this.getUserProfile().subscribe(
+  //     res => {
+  //       this.userDetails = res['user'];
+  //     },
+  //     err => {
+  //       console.log(err);
+
+  //     }
+  //   )
+  //   if (this.selectedUser.email == "admin@gmail.com") {
+  //     console.log('admin')
+  //     return 1;
+  //   }
+  //   else {
+  //     console.log(this.userDetails.email)
+  //     return 0;
+  //   }
+
+  // }
 
 }
