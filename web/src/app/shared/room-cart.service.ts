@@ -10,11 +10,16 @@ export class RoomCartService {
 
   selectedRoomCart: RoomCart={
     roomId:'',
+    custId:'',
   };
 
   constructor(private http:HttpClient) { }
 
-  postRoomCart(roomCart : RoomCart){
-    return this.http.post(environment.apiBaseUrl + '/newcartR', roomCart);
+  postRoomCart(a,b){
+    const reqBody = {
+      roomId: a,
+      custId: b
+    }
+    return this.http.post(environment.apiBaseUrl + '/newcartR', reqBody);
   }
 }

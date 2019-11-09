@@ -36,7 +36,6 @@ import { PagenotComponent } from './pagenot/pagenot.component';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +49,8 @@ import { PagenotComponent } from './pagenot/pagenot.component';
     AddroomComponent,
     ContactusComponent,
     PagenotComponent,
-
+    
+  
   ],
 
 
@@ -60,9 +60,8 @@ import { PagenotComponent } from './pagenot/pagenot.component';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     BrowserAnimationsModule,
-    HttpModule
-
-
+    HttpModule,
+    
 
   ],
 

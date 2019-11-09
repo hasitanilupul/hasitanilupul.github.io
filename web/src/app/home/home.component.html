@@ -54,7 +54,8 @@
 
 
 <!-- nav bar buttons -->
-<p *ngIf="role=='1'" style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE </a></p>
+<p *ngIf="role=='1'" style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE
+    </a></p>
 
 <p *ngIf="!isLogged()" style="position: absolute;top: 2%; left: 83%; font-size: 15px;"><a routerLink="/login"><span
             class="glyphicon glyphicon-log-in"></span> Login</a></p>
@@ -66,7 +67,8 @@
         <p (click)="logOut()"> LOGOUT</p>
     </a></p>
 
-<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/userprofile"> WELCOME {{userDetails.fName}}</a></p>
+<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/userprofile">
+        WELCOME {{userDetails.fName}}</a></p>
 
 <!-- middle buttons -->
 
@@ -129,28 +131,80 @@
 
 <!-- Add reception Form -->
 <div *ngIf="role=='1'">
-<input class="button" type="button" value="Add receptionist" data-toggle="modal" data-target="#addRes">
-<a routerLink="/addroom"><input class="button" type="button" value="Add Room & Food"></a>
+    <input class="button" type="button" value="Add receptionist" data-toggle="modal" data-target="#addRes">
+    <a routerLink="/addroom"><input class="button" type="button" value="Add Room & Food"></a>
 </div>
 
 
-<div *ngIf="role=='1'"  class="modal fade" id="addRes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div *ngIf="role=='1'" class="modal fade" id="addRes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div align="center" class="modal-dialog" role="document">
+
+
+        <div class="success" *ngIf="showSucessMessage">
+            Saved successfully
+        </div>
+
+        <div class="alert" *ngIf="serverErrorMessages">
+            {{serverErrorMessages}}
+        </div>
         <form #addResForm="ngForm" (ngSubmit)="addRes(addResForm);" style="width: 100%;">
-            <input type="hidden" #_id="ngModel" [(ngModel)]="userService.selectedUser._id" name="_id">
-            <input type="text" #fName="ngModel" [(ngModel)]="userService.selectedUser.fName" name="fName"
-                placeholder="F name">
-            <input type="text" #lName="ngModel" [(ngModel)]="userService.selectedUser.lName" name="lName"
-                placeholder="L name">
-            <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email"
-                placeholder="Email">
-            <input type="text" #tp="ngModel" [(ngModel)]="userService.selectedUser.tp" name="tp" placeholder="tp">
-            <input type="text" #id="ngModel" [(ngModel)]="userService.selectedUser.id" name="id" placeholder="ID">
-            <input type="text" #role="ngModel" [(ngModel)]="userService.selectedUser.role" name="role" placeholder="Role">
-            <input type="text" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
-            required>
-            <input type="hidden" #saltSecret="ngModel" [(ngModel)]="userService.selectedUser.saltSecret"
-                name="saltSecret">
+            <!-- <input type="hidden" #_id="ngModel" [(ngModel)]="userService.selectedUser._id" name="_id"> -->
+            <input type="text" #fName="ngModel" [(ngModel)]="resUserService.selectedresUser.fName" name="fName"
+                placeholder="F name" required [ngClass]="{'invalid-textbox' :addResForm.submitted && !fName.valid }">
+            <div *ngIf="addResForm.submitted && !fName.valid">
+                <label class="validation-message">This field is required.</label>
+            </div>
+
+            <input type="text" #lName="ngModel" [(ngModel)]="resUserService.selectedresUser.lName" name="lName"
+                placeholder="L name" required [ngClass]="{'invalid-textbox' :addResForm.submitted && !lName.valid }">
+            <div *ngIf="addResForm.submitted && !lName.valid">
+                <label class="validation-message">This field is required.</label>
+            </div>
+
+
+            <input type="text" #email="ngModel" [(ngModel)]="resUserService.selectedresUser.email" name="email"
+                placeholder="Email" required required [pattern]="emailRegex"
+                [ngClass]="{'invalid-textbox' :addResForm.submitted && !email.valid }">
+            <div *ngIf="addResForm.submitted && email.errors">
+                <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+                <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+            </div>
+
+            <input type="text" #tp="ngModel" [(ngModel)]="resUserService.selectedresUser.tp" name="tp" placeholder="tp"
+                required [pattern]="tpRegex" [ngClass]="{'invalid-textbox' :addResForm.submitted && !tp.valid }">
+            <div *ngIf="addResForm.submitted && tp.errors">
+                <label *ngIf="tp.errors.required" class="validation-message">This field is required.</label>
+                <label *ngIf="tp.errors.pattern" class="validation-message">Invalid tp address.</label>
+            </div>
+
+
+            <input type="text" #id="ngModel" [(ngModel)]="resUserService.selectedresUser.id" name="id" placeholder="ID"
+                required [ngClass]="{'invalid-textbox' :addResForm.submitted && !id.valid }">
+            <div *ngIf="addResForm.submitted && !id.valid">
+                <label class="validation-message">This field is required.</label>
+            </div>
+
+
+            <input type="text" #role="ngModel" [(ngModel)]="resUserService.selectedresUser.role" name="role"
+                placeholder="Role" required [ngClass]="{'invalid-textbox' :addResForm.submitted && !role.valid }">
+            <div *ngIf="addResForm.submitted && !id.valid">
+                <label class="validation-message">This field is required.</label>
+            </div>
+
+
+            <input type="text" #password="ngModel" [(ngModel)]="resUserService.selectedresUser.password" name="password"
+                placeholder="Password" required
+                [ngClass]="{'invalid-textbox' :addResForm.submitted && !password.valid }">
+            <div *ngIf="addResForm.submitted && password.errors">
+                <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+                <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+            </div>
+
+            <!-- <input type="hidden" #saltSecret="ngModel" [(ngModel)]="resUserService.selectedresUser.saltSecret" -->
+            <!-- name="saltSecret"> -->
+
+
             <input type="submit" value="Add user">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
@@ -161,213 +215,214 @@
 
 
 
-
-<!-- Add rate form -->
-<div class="container para" style="width: 90% ; background-color: transparent">
-    <div class="col-sm-3" *ngFor="let rate of rates">
-        <div class="rating-card" data-aos="fade-up" data-aos-duration="1000">
-            <img src="../../assets/img/icons/single_user.png" style="height: 200p; width: 200px"><br>
-            <p>{{rate['name']}}</p>
-            <p>
-                {{rate['comment']}}
-            </p>
-            <p *ngIf="role=='1'" (click)="deleteItem(rate._id,addrateForm)" style="color:rgb(232, 248, 0);">DELETE</p>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Add rate form -->
+    <div class="container para"
+        style="width: 90% ; background-color: transparent ; display:flex; overflow-x:scroll ; scroll-behavior: auto;">
+        <div *ngFor="let rate of rates">
+            <div class="rating-card">
+                <img src="../../assets/img/icons/single_user.png" style="height: 200p; width: 200px"><br>
+                <p>{{rate['name']}}</p>
+                <p>
+                    {{rate['comment']}}
+                </p>
+                <p *ngIf="role=='1'" (click)="deleteItem(rate._id,addrateForm)" style="color:rgb(232, 248, 0);">DELETE
+                </p>
+            </div>
         </div>
     </div>
 </div>
-
 <br>
 
 
 <div *ngIf="role=='3'">
 
-<div align="center" data-aos="fade-up" data-aos-duration="1000">
-    <input class="button" type="button" value="FEEDBACK" (click)="openForm()">
-</div>
+    <div align="center" data-aos="fade-up" data-aos-duration="1000">
+        <input class="button" type="button" value="FEEDBACK" (click)="openForm()">
+    </div>
 
-<div style="width:42.5%; margin: auto; border-radius: 8px" class="success" *ngIf="showSucessMessage">
-    <div style="font-size: 18px; text-align: center;">Thank you for your Comment 😊</div>
-</div>
+    <div style="width:42.5%; margin: auto; border-radius: 8px" class="success" *ngIf="showSucessMessage">
+        <div style="font-size: 18px; text-align: center;">Thank you for your Comment 😊</div>
+    </div>
 
-<div class="alert" *ngIf="serverErrorMessages">
-    {{serverErrorMessages}}
-</div>
-<div align="center" [hidden]="val" data-aos="fade">
-
-
-
-    <form #addrateForm="ngForm" (ngSubmit)="onSubmit(addrateForm);" style="width: 50%">
-        <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name" placeholder="Name"
-            required>
-        <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
-            placeholder="Comment" required>
+    <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+    </div>
+    <div align="center" [hidden]="val" data-aos="fade">
 
 
-        <input type="submit" value="ADD" (click)="openForm()">
-    </form>
+
+        <form #addrateForm="ngForm" (ngSubmit)="onSubmit(addrateForm);" style="width: 50%">
+            <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name"
+                placeholder="Name" required>
+            <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
+                placeholder="Comment" required>
 
 
-</div>
 
-<!-- body  -->
+            <input type="submit" value="ADD" (click)="openForm()">
+        </form>
 
-<br><br>
-<div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
-    style="background-color: rgb(37, 29, 51); height: 500px; position: absolute; width: 100%"></div>
 
-<div class="container" style="padding: 0mm; width: 100%; border-radius: 0%; background-color: transparent">
-    <div class="col-sm-6" style="padding: 0%">
-        <div data-aos="fade-right" data-aos-offset="500" data-aos-duration="2000">
-            <img src="../../assets/img/rooms/117749730.jpg" style="width: 100%; height:500px;">
+    </div>
+
+    <!-- body  -->
+
+    <br><br>
+    <div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
+        style="background-color: rgb(37, 29, 51); height: 500px; position: absolute; width: 100%"></div>
+
+    <div class="container" style="padding: 0mm; width: 100%; border-radius: 0%; background-color: transparent">
+        <div class="col-sm-6" style="padding: 0%">
+            <div data-aos="fade-right" data-aos-offset="500" data-aos-duration="2000">
+                <img src="../../assets/img/rooms/117749730.jpg" style="width: 100%; height:500px;">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
+                <p style="text-align: left ; font-size: 35px">ROOMS</p><br>
+                <P style="font-size: 20px; text-align: left">Best experence ever & valuble customer service<br>
+                    ▪ Fire place <br>
+                    ▪ Attach bathrooms per each<br>
+                    ▪ Dining room<br>
+                    ▪ accommodation for drivers<br>
+                    ▪ kitchen</P>
+                <a href="../room/">
+                    <p style="padding-top: 50%"><input type="button" value="BOOK NOW"></p>
+                </a>
+            </div>
         </div>
     </div>
-    <div class="col-sm-6">
-        <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
-            <p style="text-align: left ; font-size: 35px">ROOMS</p><br>
-            <P style="font-size: 20px; text-align: left">Best experence ever & valuble customer service<br>
-                ▪ Fire place <br>
-                ▪ Attach bathrooms per each<br>
-                ▪ Dining room<br>
-                ▪ accommodation for drivers<br>
-                ▪ kitchen</P>
-            <a href="../room/">
-                <p style="padding-top: 50%"><input type="button" value="BOOK NOW"></p>
-            </a>
+    <br>
+
+    <div data-aos="fade" data-aos-duration="2000" data-aos-offset="300"
+        style="background-color: rgb(184, 153, 18); height: 150px; width: 100%; color: red; font-family: fantasy">
+        <h1 align="center">
+            <<< &nbsp; SEASONAL OFFER &nbsp;>>>
+        </h1>
+        <h3 align="center">5 Bed rooms with every facility</h3>
+        <h3 align="center">Only 22,000 LKR*</h3>
+
+
+    </div><br>
+
+
+    <div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
+        style="background-color: rgb(37, 29, 51); height: 500px; position: absolute; width: 100%"></div>
+
+    <div class="container" style="padding: 0mm; width: 99%; border-radius: 0%; background-color: transparent">
+        <div class="col-sm-6" style="padding: 0%;">
+            <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
+                <p style="text-align: right ; font-size: 35px">FOODS</p><br>
+                <P style="font-size: 20px; text-align: right">Vast range of foods for choose <br>
+                    suited for every type of breakfast, lunch, dinner <br>
+                    such with best service and facilities</P>
+                <a href="../food/">
+                    <p style="padding-top: 50%; padding-left: 200%"><input type="button" value="ORDER"></p>
+                </a>
+            </div>
         </div>
-    </div>
-</div>
-<br>
-
-<div data-aos="fade" data-aos-duration="2000" data-aos-offset="300"
-    style="background-color: rgb(184, 153, 18); height: 150px; width: 100%; color: red; font-family: fantasy">
-    <h1 align="center">
-        <<< &nbsp; SEASONAL OFFER &nbsp;>>>
-    </h1>
-    <h3 align="center">5 Bed rooms with every facility</h3>
-    <h3 align="center">Only 22,000 LKR*</h3>
 
 
-</div><br>
 
-
-<div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
-    style="background-color: rgb(37, 29, 51); height: 500px; position: absolute; width: 100%"></div>
-
-<div class="container" style="padding: 0mm; width: 99%; border-radius: 0%; background-color: transparent">
-    <div class="col-sm-6" style="padding: 0%;">
-        <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
-            <p style="text-align: right ; font-size: 35px">FOODS</p><br>
-            <P style="font-size: 20px; text-align: right">Vast range of foods for choose <br>
-                suited for every type of breakfast, lunch, dinner <br>
-                such with best service and facilities</P>
-            <a href="../food/">
-                <p style="padding-top: 50%; padding-left: 200%"><input type="button" value="ORDER"></p>
-            </a>
+        <div class="col-sm-6">
+            <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
+                <img src="../../assets/img/food.jpg" style="width: 103%; height:500px;">
+            </div>
         </div>
     </div>
 
 
+    <br><br><br>
 
-    <div class="col-sm-6">
-        <div data-aos="fade-up" data-aos-offset="500" data-aos-duration="2000">
-            <img src="../../assets/img/food.jpg" style="width: 103%; height:500px;">
+    <h3 align="center" style="font-family: 'Franklin Gothic Medium'; color: rgb(0, 0, 0);" data-aos="zoom-in"
+        data-aos-duration="2000">💠 5KM to HAKGALA &nbsp;&nbsp;&nbsp;&nbsp; 💠 3KM to the PIDURANGALA MOUNTAINS
+        &nbsp;&nbsp;&nbsp;&nbsp; 💠 2KM to NUWARA ELIYA</h3><br><br>
+
+
+    <!-- Hotel features -->
+
+    <p data-aos="zoom-in" data-aos-duration="2000" style="font-size: 40px">Aminitiese</p>
+    <br><br>
+    <div class="container" style="background-color: transparent" data-aos="zoom-in" data-aos-duration="1500">
+        <div class="col-sm-2">
+            <p>
+                <img src="../../assets/img/icons/car.PNG" style="height: 100px"><br><br>
+                Parking
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <p>
+                <img src="../../assets/img/icons/kids.PNG" style="height: 100px"><br><br>
+                Kid's Meal
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <p>
+                <img src="../../assets/img/icons/carehire.PNG" style="height: 100px"><br><br>
+                Car Hire
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <p>
+                <img src="../../assets/img/icons/laundri.PNG" style="height: 100px"><br><br>
+                Laundry
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <p>
+                <img src="../../assets/img/icons/outdoor.PNG" style="height: 100px"><br><br>
+                Outdoor playground
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <p>
+                <img src="../../assets/img/icons/room service.PNG" style="height: 100px"><br><br>
+                Room service
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <br><br>
+            <p>
+                <img src="../../assets/img/icons/wifi.png" style="height: 100px"><br><br>
+                Free wifi
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <br><br>
+            <p>
+                <img src="../../assets/img/icons/BBQ.PNG" style="height: 100px"><br><br>
+                BBQ
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <br><br>
+            <p>
+                <img src="../../assets/img/icons/GAME.PNG" style="height: 100px"><br><br>
+                Game Zone
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <br><br>
+            <p>
+                <img src="../../assets/img/icons/billiads.PNG" style="height: 100px"><br><br>
+                Billiards
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <br><br>
+            <p>
+                <img src="../../assets/img/icons/boat.PNG" style="height: 100px"><br><br>
+                Boat ride
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <br><br>
+            <p>
+                <img src="../../assets/img/icons/kichan.PNG" style="height: 100px"><br><br>
+                shared kitchen
+            </p>
         </div>
     </div>
-</div>
-
-
-<br><br><br>
-
-<h3  align="center" style="font-family: 'Franklin Gothic Medium'; color: rgb(0, 0, 0);" data-aos="zoom-in"
-    data-aos-duration="2000">💠 5KM to HAKGALA &nbsp;&nbsp;&nbsp;&nbsp; 💠 3KM to the PIDURANGALA MOUNTAINS
-    &nbsp;&nbsp;&nbsp;&nbsp; 💠 2KM to NUWARA ELIYA</h3><br><br>
-
-
-<!-- Hotel features -->
-
-<p data-aos="zoom-in" data-aos-duration="2000" style="font-size: 40px">Aminitiese</p>
-<br><br>
-<div class="container" style="background-color: transparent" data-aos="zoom-in" data-aos-duration="1500">
-    <div class="col-sm-2">
-        <p>
-            <img src="../../assets/img/icons/car.PNG" style="height: 100px"><br><br>
-            Parking
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <p>
-            <img src="../../assets/img/icons/kids.PNG" style="height: 100px"><br><br>
-            Kid's Meal
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <p>
-            <img src="../../assets/img/icons/carehire.PNG" style="height: 100px"><br><br>
-            Car Hire
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <p>
-            <img src="../../assets/img/icons/laundri.PNG" style="height: 100px"><br><br>
-            Laundry
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <p>
-            <img src="../../assets/img/icons/outdoor.PNG" style="height: 100px"><br><br>
-            Outdoor playground
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <p>
-            <img src="../../assets/img/icons/room service.PNG" style="height: 100px"><br><br>
-            Room service
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <br><br>
-        <p>
-            <img src="../../assets/img/icons/wifi.png" style="height: 100px"><br><br>
-            Free wifi
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <br><br>
-        <p>
-            <img src="../../assets/img/icons/BBQ.PNG" style="height: 100px"><br><br>
-            BBQ
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <br><br>
-        <p>
-            <img src="../../assets/img/icons/GAME.PNG" style="height: 100px"><br><br>
-            Game Zone
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <br><br>
-        <p>
-            <img src="../../assets/img/icons/billiads.PNG" style="height: 100px"><br><br>
-            Billiards
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <br><br>
-        <p>
-            <img src="../../assets/img/icons/boat.PNG" style="height: 100px"><br><br>
-            Boat ride
-        </p>
-    </div>
-    <div class="col-sm-2">
-        <br><br>
-        <p>
-            <img src="../../assets/img/icons/kichan.PNG" style="height: 100px"><br><br>
-            shared kitchen
-        </p>
-    </div>
-</div>
 
 </div>
-
-

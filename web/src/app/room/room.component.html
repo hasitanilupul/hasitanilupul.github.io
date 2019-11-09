@@ -44,9 +44,12 @@
       <hr>
       Price<br>
       {{room['price']}}<br><br>
-      <input type="submit" (click)=onSubmit() value="BOOK NOW">
+      <input type="submit" (click)=onSubmit(room._id) value="BOOK NOW">
+      
 
     </div>
   </div>
+
+
 
 </div>

@@ -2,17 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AddRateService } from '../shared/addrate.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../app/shared/user.service';
-import { User } from 'src/app/shared/user.model';
+import { ResUserService } from '../../app/shared/res-user.service'
+import { resUser } from 'src/app/shared/resuser.model';
+
+
+
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [AddRateService, UserService]
+  providers: [AddRateService, ResUserService]
 })
 export class HomeComponent implements OnInit {
+
+    
+
 
   public val = true;
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -22,24 +28,15 @@ export class HomeComponent implements OnInit {
   serverErroeMessages: String;
   serverErrorMessages: String;
 
-  userDetails = new User;
+  userDetails = new resUser;
   role;
   data;
 
   rates: any[];
 
 
-  
-  fileData: File = null;
-  previewUrl:any = null;
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
 
-
-
-
-
-  constructor(private addrateservice: AddRateService, private router: Router, private userService: UserService) { }
+  constructor(private addrateservice: AddRateService, private router: Router, private resUserService: ResUserService) { }
 
 
 
@@ -62,7 +59,7 @@ export class HomeComponent implements OnInit {
 
     if (localStorage.getItem('token')) {
 
-      this.userService.getUserProfile().subscribe(
+      this.resUserService.getUserProfile().subscribe(
         res => {
           this.userDetails = res['user']
         },
@@ -74,6 +71,8 @@ export class HomeComponent implements OnInit {
     } else {
 
     }
+
+
   }
 
   onSubmit(form: NgForm) {
@@ -142,7 +141,7 @@ export class HomeComponent implements OnInit {
 
 
   addRes(form: NgForm) {
-    this.userService.postUser(form.value).subscribe(
+    this.resUserService.postresUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
@@ -151,6 +150,7 @@ export class HomeComponent implements OnInit {
       err => {
         if (err.status === 422) {
           this.serverErrorMessages = err.error.join('<br/>');
+          // console.log(err)
         }
         else
           this.serverErrorMessages = 'Something went wrong.Please contact admin.';
@@ -159,8 +159,8 @@ export class HomeComponent implements OnInit {
   }
 
   resetForm(form: NgForm) {
-    this.userService.selectedUser = {
-      _id: '',
+    this.resUserService.selectedresUser = {
+      // _id: '',
       fName: '',
       lName: '',
       id: '',
@@ -168,31 +168,12 @@ export class HomeComponent implements OnInit {
       tp: '',
       password: '',
       role: '',
-      saltSecret: ''
+      // saltSecret: ''
     };
     form.resetForm();
     this.serverErrorMessages = '';
   }
 
-
-  fileProgress(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
-    this.preview();
-}
-
-preview() {
-  // Show preview 
-  var mimeType = this.fileData.type;
-  if (mimeType.match(/image\/*/) == null) {
-    return;
-  }
-
-  var reader = new FileReader();      
-  reader.readAsDataURL(this.fileData); 
-  reader.onload = (_event) => { 
-    this.previewUrl = reader.result; 
-  }
-}
 
 
 

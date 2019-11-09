@@ -4,6 +4,9 @@ var cartRSchema = new mongoose.Schema({
     roomId:{
         type:String
     },
+    custId:{
+        type:String
+    }
 
 },
 {collection:'cartR'}
