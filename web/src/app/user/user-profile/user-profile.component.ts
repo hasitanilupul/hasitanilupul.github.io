@@ -30,7 +30,6 @@ export class UserProfileComponent implements OnInit  {
       res => {
         
         this.userDetails = res['user'];
-        console.log(this.userDetails)
       },
       err => {
         console.log(err);
@@ -78,8 +77,10 @@ export class UserProfileComponent implements OnInit  {
     if (this.userDetails.email == "admin@gmail.com") {
       localStorage.setItem('admin', '1');
       //  console.log(localStorage.getItem('admin'))
+    }else if(this.userDetails.role ==null){
+      localStorage.setItem('admin','3')
     }
-    else {
+    else{
       console.log()
     }
 

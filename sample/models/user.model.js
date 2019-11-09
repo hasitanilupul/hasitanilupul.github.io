@@ -26,6 +26,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         required:'TP can\'t be empty'
     },
+    role:{
+        type: String,
+    },
+
     password: {
         type: String,
         required: 'Password can\'t be empty',

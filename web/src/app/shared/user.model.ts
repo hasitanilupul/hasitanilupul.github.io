@@ -5,6 +5,7 @@ export class User {
     id:string;
     email: string;
     tp:string;
+    role:string;
     password: string;
     saltSecret:string;
 }

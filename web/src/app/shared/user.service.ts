@@ -15,6 +15,7 @@ export class UserService {
     id: '',
     email: '',
     tp: '',
+    role:'',
     password: '',
     saltSecret:'',
   };
@@ -75,31 +76,12 @@ export class UserService {
 
   isLoggedIn() {
     var userPayload = this.getUserPayload();
-    if (userPayload)
+    if (userPayload){
       return userPayload.exp > Date.now() / 1000;
+    }
     else
       return false;
   } 
 
-  // isAdmin() {
-  //   this.getUserProfile().subscribe(
-  //     res => {
-  //       this.userDetails = res['user'];
-  //     },
-  //     err => {
-  //       console.log(err);
-
-  //     }
-  //   )
-  //   if (this.selectedUser.email == "admin@gmail.com") {
-  //     console.log('admin')
-  //     return 1;
-  //   }
-  //   else {
-  //     console.log(this.userDetails.email)
-  //     return 0;
-  //   }
-
-  // }
 
 }

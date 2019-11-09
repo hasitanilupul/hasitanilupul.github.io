@@ -9,3 +9,4 @@ require('./user.model');
 require('./addroom.model');
 require('./rating.model');
 require('./addfood.model');
+require('./cartR.model');

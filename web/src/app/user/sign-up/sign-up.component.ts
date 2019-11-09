@@ -19,10 +19,10 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form: NgForm) { 
+  onSubmit(form: NgForm) {
     this.userService.postUser(form.value).subscribe(
       res => {
-        
+
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.resetForm(form);
@@ -39,14 +39,15 @@ export class SignUpComponent implements OnInit {
 
   resetForm(form: NgForm) {
     this.userService.selectedUser = {
-      _id:'',
+      _id: '',
       fName: '',
-      lName:'',
-      id:'',
+      lName: '',
+      id: '',
       email: '',
-      tp:'',
+      tp: '',
       password: '',
-      saltSecret:''
+      role: '',
+      saltSecret: ''
     };
     form.resetForm();
     this.serverErrorMessages = '';

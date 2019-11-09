@@ -44,6 +44,8 @@
     
   </div>
 
+  <input type="hidden" #role="ngModel" [(ngModel)]="userService.selectedUser.role" name="role">
+
 
 
   <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"

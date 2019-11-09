@@ -46,12 +46,15 @@
     </a>
 </div>
 
+<!-- Title -->
 <h1 class="centered">
     <p class="glow" data-aos="fade-down" data-aos-duration="1500" style="font-family: painter; font-size: 100px">Vilmic
         Lake Inn</p>
 </h1>
 
-<p *ngIf="role" style="position: absolute;top: 2%; left: 84%; font-size: 15px;"><a routerLink="/addroom">MANAGE </a></p>
+
+<!-- nav bar buttons -->
+<p *ngIf="role=='1'" style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE </a></p>
 
 <p *ngIf="!isLogged()" style="position: absolute;top: 2%; left: 83%; font-size: 15px;"><a routerLink="/login"><span
             class="glyphicon glyphicon-log-in"></span> Login</a></p>
@@ -59,11 +62,15 @@
 <p *ngIf="!isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/signup"><span
             class="glyphicon glyphicon-user"></span> Register</a></p>
 
-<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/login">
+<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 84%; font-size: 15px;"><a routerLink="/login">
         <p (click)="logOut()"> LOGOUT</p>
     </a></p>
 
-<div *ngIf="!role" class="container" style="background-color: transparent ;">
+<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 90%; font-size: 15px;"><a routerLink="/userprofile"> WELCOME {{userDetails.fName}}</a></p>
+
+<!-- middle buttons -->
+
+<div *ngIf="role=='3'" class="container" style="background-color: transparent ;">
     <p>
         <a href="../room/">
             <div class="col-sm-3">
@@ -102,11 +109,11 @@
     </p>
 </div>
 
-<div>
+<div *ngIf="role=='3'">
     <p class="moto">DISCOVER THE JOY OF YOUR OWN HOME</p>
 </div>
 
-<div class="para">
+<div *ngIf="role=='3'" class="para">
     <p>
         Situated within 1.1 km of Gregory Lake, Vilmic Lake Inn & Holiday Bungalow
         in Nuwara Eliya has a number of amenities including barbecue facilities and
@@ -120,10 +127,42 @@
     </p>
 </div>
 
+<!-- Add reception Form -->
+<div *ngIf="role=='1'">
+<input class="button" type="button" value="Add receptionist" data-toggle="modal" data-target="#addRes">
+<a routerLink="/addroom"><input class="button" type="button" value="Add Room & Food"></a>
+</div>
+
+
+<div *ngIf="role=='1'"  class="modal fade" id="addRes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form #addResForm="ngForm" (ngSubmit)="addRes(addResForm);" style="width: 100%;">
+            <input type="hidden" #_id="ngModel" [(ngModel)]="userService.selectedUser._id" name="_id">
+            <input type="text" #fName="ngModel" [(ngModel)]="userService.selectedUser.fName" name="fName"
+                placeholder="F name">
+            <input type="text" #lName="ngModel" [(ngModel)]="userService.selectedUser.lName" name="lName"
+                placeholder="L name">
+            <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email"
+                placeholder="Email">
+            <input type="text" #tp="ngModel" [(ngModel)]="userService.selectedUser.tp" name="tp" placeholder="tp">
+            <input type="text" #id="ngModel" [(ngModel)]="userService.selectedUser.id" name="id" placeholder="ID">
+            <input type="text" #role="ngModel" [(ngModel)]="userService.selectedUser.role" name="role" placeholder="Role">
+            <input type="text" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+            required>
+            <input type="hidden" #saltSecret="ngModel" [(ngModel)]="userService.selectedUser.saltSecret"
+                name="saltSecret">
+            <input type="submit" value="Add user">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </form>
+    </div>
+</div>
 
 
 
 
+
+
+<!-- Add rate form -->
 <div class="container para" style="width: 90% ; background-color: transparent">
     <div class="col-sm-3" *ngFor="let rate of rates">
         <div class="rating-card" data-aos="fade-up" data-aos-duration="1000">
@@ -132,12 +171,15 @@
             <p>
                 {{rate['comment']}}
             </p>
-            <p *ngIf="role" (click)="deleteItem(rate._id,addrateForm)" style="color:rgb(232, 248, 0);">DELETE</p>
+            <p *ngIf="role=='1'" (click)="deleteItem(rate._id,addrateForm)" style="color:rgb(232, 248, 0);">DELETE</p>
         </div>
     </div>
 </div>
 
 <br>
+
+
+<div *ngIf="role=='3'">
 
 <div align="center" data-aos="fade-up" data-aos-duration="1000">
     <input class="button" type="button" value="FEEDBACK" (click)="openForm()">
@@ -159,12 +201,15 @@
             required>
         <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
             placeholder="Comment" required>
+
+
         <input type="submit" value="ADD" (click)="openForm()">
     </form>
 
 
 </div>
 
+<!-- body  -->
 
 <br><br>
 <div data-aos="fade-up" data-aos-duration="2000" data-aos-offset="500"
@@ -233,7 +278,7 @@
 
 <br><br><br>
 
-<h3 align="center" style="font-family: 'Franklin Gothic Medium'; color: rgb(0, 0, 0);" data-aos="zoom-in"
+<h3  align="center" style="font-family: 'Franklin Gothic Medium'; color: rgb(0, 0, 0);" data-aos="zoom-in"
     data-aos-duration="2000">💠 5KM to HAKGALA &nbsp;&nbsp;&nbsp;&nbsp; 💠 3KM to the PIDURANGALA MOUNTAINS
     &nbsp;&nbsp;&nbsp;&nbsp; 💠 2KM to NUWARA ELIYA</h3><br><br>
 
@@ -322,3 +367,7 @@
         </p>
     </div>
 </div>
+
+</div>
+
+

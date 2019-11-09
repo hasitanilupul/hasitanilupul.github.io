@@ -5,6 +5,7 @@ const ctrlUser = require('../controllers/user.controller');
 const ctrlAddroom = require('../controllers/addroom.controller');
 const ctrlRating = require('../controllers/rating.controller');
 const ctrlAddfood = require('../controllers/addfood.controller');
+const ctrlcartR = require('../controllers/cartR.controller');
 
 const jwtHelper = require('../config/jwtHelper');
 
@@ -12,6 +13,7 @@ router.post('/register', ctrlUser.register);
 router.post('/newroom', ctrlAddroom.newroom);
 router.post('/newrate', ctrlRating.newrate);
 router.post('/newfood', ctrlAddfood.newfood);
+router.post('/newcartR', ctrlcartR.newcartR);
 
 router.post('/authenticate', ctrlUser.authenticate);
 

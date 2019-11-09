@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, state, style, animate } from '@angular/animations';
 import { AddRoomService } from '../shared/add-room.service';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../shared/user.service'
+import { RoomCartService } from '../shared/room-cart.service';
+import { send } from 'q';
 
 
 @Component({
@@ -24,7 +26,7 @@ import { UserService } from '../shared/user.service';
 export class RoomComponent implements OnInit {
 
   rooms: any[];
-  constructor(private AddRoomService: AddRoomService) { }
+  constructor(private AddRoomService: AddRoomService, private UserService:UserService, private RoomCartService:RoomCartService) { }
    
 
   ngOnInit() {
@@ -40,7 +42,23 @@ export class RoomComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.rooms)
+
+    var data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
+    console.log(data._id);
+    
+    this.RoomCartService.postRoomCart(data._id).subscribe(
+      res =>{
+       data._id;
+      },
+      err =>{
+        if (err.status === 422) {
+          console.log('err');
+        } else {
+          console.log('Contact admin');
+        }
+      }
+    )
+
   }
 
 
