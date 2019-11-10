@@ -55,8 +55,8 @@ module.exports.uproom = (req, res, next) => {
 
 module.exports.delete = (req, res, next) => {
     Room.findByIdAndRemove(req.params._id, (err, doc) => {
-        if (!err){ res.send(doc);}
-        else{console.log('Error in deleting')}
+        if (!err) { res.send(doc); }
+        else { console.log('Error in deleting') }
     })
 }
 

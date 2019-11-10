@@ -11,11 +11,15 @@ export class AddRateService {
   selectedRate: Rate={
     name:'',
     comment:'',
+    productImage:''
   };
 
   constructor(private http: HttpClient) { }
 
-  postRate(rate : Rate){
+  // postRate(rate : Rate){
+  //   return this.http.post(environment.apiBaseUrl + '/newrate', rate);
+  // }
+  postRate(rate : any){
     return this.http.post(environment.apiBaseUrl + '/newrate', rate);
   }
 

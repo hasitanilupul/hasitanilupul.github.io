@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, FormControl, AbstractControl, Validator } from '@angular/forms';
 import { AddRateService } from '../shared/addrate.service';
 import { Router } from '@angular/router';
 import { ResUserService } from '../../app/shared/res-user.service'
 import { resUser } from 'src/app/shared/resuser.model';
-
+import { element } from '@angular/core/src/render3';
+// import { HttpClient } from '@angular/common/http';
 
 
 
@@ -18,8 +19,12 @@ import { resUser } from 'src/app/shared/resuser.model';
   providers: [AddRateService, ResUserService]
 })
 export class HomeComponent implements OnInit {
+ 
+  
 
-    
+
+  SERVER_URL = "http://localhost:3000/api/upload";
+  uploadForm: FormGroup;
 
 
   public val = true;
@@ -33,10 +38,16 @@ export class HomeComponent implements OnInit {
   userDetails = new resUser;
   role;
   data;
+  file;
 
   rates: any[];
   preview;
   addrateForm;
+
+  name:string;
+  comment:string;
+  
+  
 
 
 
@@ -44,9 +55,11 @@ export class HomeComponent implements OnInit {
 
 
 
+
   
 
   ngOnInit() {
+
 
     this.role = localStorage.getItem('admin');
 
@@ -81,23 +94,33 @@ export class HomeComponent implements OnInit {
 
   onSubmit(form: NgForm) {
 
+    // this.addrateForm = new FormGroup({
+    //   name: new FormControl(),
+    //   Comment: new FormControl(),
+    //   productImage: new FormControl()
+    // });
+
     const formData = new FormData();
+    // Object.keys(this.addrateForm.value).forEach(element => {
+    //   console.log(this.addrateForm.value[element] + '->' + element);
+    //   formData.append(element, this.addrateForm.value[element]);
+    // });
 
-    Object.keys(this.addrateForm.value).forEach(element =>{
-      console.log(this.addrateForm.value[element] + '->' + element);
-      formData.append(element, this.addrateForm.value[element]);
-    });
+    formData.append('imgg',this.file, this.file.name);
+    formData.append('nameg',this.name);
+    formData.append('commentg',this.comment);
 
-    this.addrateForm.addrate(formData);
+    // this.addrateservice.postRate(this.file.value);
     console.log(formData);
-
-    this.addrateservice.postRate(form.value).subscribe(
+    this.addrateservice.postRate(formData).subscribe(
       res => {
+        console.log('yes');
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.refreshRateList();
       },
       err => {
+        console.log('no');
         if (err.status === 422) {
           this.serverErroeMessages = err.error.join('<br/>');
         } else {
@@ -108,23 +131,31 @@ export class HomeComponent implements OnInit {
     
   }
 
-  // const formData = new FormData();
 
+getName(evnt){
+  console.log(evnt.srcElement.value);
+    this.name = evnt.srcElement.value;
+}
 
+getComment(event){
+  console.log(event.srcElement.value);
+  this.comment = event.srcElement.value;
+}
 
-  addFile(event){
-    const file = (event.target as HTMLInputElement).files[0];
-    this.addrateForm.patchValue({
-      productImage: file
-    });
-    this.addrateForm.get('productImage').updateValueAndValidity()
+  addFile(event) {
+    this.file = (event.target as HTMLInputElement).files[0];
+    // this.file.patchValue({
+    //   productImage: this.file
+    // });
+    // this.file.get('productImage').updateValueAndValidity()
 
     //File preview
     const reader = new FileReader();
-    reader.onload = () =>{
+    reader.readAsDataURL(this.file);
+    reader.onload = () => {
       this.preview = reader.result as string;
     }
-    reader.readAsDataURL(file)
+    
   }
 
 
@@ -200,7 +231,7 @@ export class HomeComponent implements OnInit {
       email: '',
       tp: '',
       password: '',
-      role: '',
+      role: '2',
       // saltSecret: ''
     };
     form.resetForm();

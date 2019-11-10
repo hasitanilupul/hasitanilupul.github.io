@@ -186,8 +186,8 @@
             </div>
 
 
-            <input type="text" #role="ngModel" [(ngModel)]="resUserService.selectedresUser.role" name="role"
-                placeholder="Role" required [ngClass]="{'invalid-textbox' :addResForm.submitted && !role.valid }">
+            <input type="hidden"  #role="ngModel" [(ngModel)]="resUserService.selectedresUser.role" name="role"
+                placeholder="Role"  required [ngClass]="{'invalid-textbox' :addResForm.submitted && !role.valid }">
             <div *ngIf="addResForm.submitted && !id.valid">
                 <label class="validation-message">This field is required.</label>
             </div>
@@ -253,19 +253,23 @@
 
 
         <form #addrateForm="ngForm" (ngSubmit)="onSubmit(addrateForm);" style="width: 50%">
-            <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name"
+            <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name" (change) = "getName($event)"
                 placeholder="Name" required>
-            <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
+            <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"  (change) = "getComment($event)"
                 placeholder="Comment" required>
-            <div class="form-group">
-                <input type="file" name="productImage" (change)="addFile($event)" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && addrateservice.selectedRate.productImage.errors}" />
+
+            <div>
+                <label for="productImage" ></label>
+                <input type="file" name="productImage" #productImage="ngModel"  [(ngModel)]="addrateservice.selectedRate.productImage" (change)="addFile($event)" 
+                    [ngClass]="{ 'is-invalid' : submitted && addrateservice.selectedRate.productImage.errors}"   />
                 <br>
                 <button [disabled]="loading" class="btn btn-primary">Upload</button>
                 <div *ngIf="submitted && addrateservice.selectedRate.productImage.errors" class="invalid-feedback">
-                    <div *ngIf="addrateservice.selectedRate.productImage.errors.required">Front Image is required</div>
+                    <div *ngIf="addrateservice.selectedRate.productImage.errors.required">Image is required</div>
                 </div>
             </div>
+
+
 
             <input type="submit" value="ADD" (click)="openForm()">
         </form>

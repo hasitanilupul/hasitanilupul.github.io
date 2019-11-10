@@ -44,16 +44,16 @@
       <hr>
       Price<br>
       {{room['price']}}<br><br>
-      <form>
+      <form >
         <label for="chin">Check In &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input name="chin" type="date" id="name">
+        <input Name="chin" type="date" (change) = "onChangeInDate($event)">
 
         <label for="chout">Check Out &nbsp;</label>
-        <input name="chout" type="date">
+        <input Name="cout" type="date" (change) = "onChangeOutDate($event)">
 
       </form>
 
-      <input type="submit" (click)=onSubmit(room._id,chout) value="BOOK NOW">
+      <input type="submit" (click)=onSubmit(room._id) value="BOOK NOW">
 
 
     </div>

@@ -6,7 +6,13 @@ var cartRSchema = new mongoose.Schema({
     },
     custId:{
         type:String
-    }
+    },
+    checkin:{
+        type:String
+    },
+    checkout:{
+        type:String
+    },
 
 },
 {collection:'cartR'}

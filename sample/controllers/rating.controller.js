@@ -14,6 +14,7 @@ module.exports.newrate = (req, res, next) => {
     rating.img = url + '/public' + req.file.filename
     rating.save((err, doc) => {
         if (!err)
+        
             res.send(doc);
         else
             res.send(err)

@@ -11,14 +11,19 @@ export class RoomCartService {
   selectedRoomCart: RoomCart={
     roomId:'',
     custId:'',
+    checkin:'',
+    checkout:'',
+
   };
 
   constructor(private http:HttpClient) { }
 
-  postRoomCart(a,b){
+  postRoomCart(a,b,c,d){
     const reqBody = {
       roomId: a,
-      custId: b
+      custId: b,
+      checkin: c,
+      checkout: d
     }
     return this.http.post(environment.apiBaseUrl + '/newcartR', reqBody);
   }

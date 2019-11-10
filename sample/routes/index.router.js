@@ -30,10 +30,10 @@ var upload = multer({
     }
 });
 
-router.post('/upload', upload.single('test'), (req, res, next) => {
-    const url = req.protocol + '://' + req.get('host');
-    res.send({ url: url +'/public/' + req.file.filename });
-})
+// router.post('/upload', upload.single('test'), (req, res, next) => {
+//     const url = req.protocol + '://' + req.get('host');
+//     res.send({ url: url +'/public/' + req.file.filename });
+// }) testing
 
 
 
