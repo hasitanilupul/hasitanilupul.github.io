@@ -42,11 +42,12 @@ export class RoomComponent implements OnInit {
     );
   }
 
-  onSubmit(rid){
+  onSubmit(rid,chout){
 
     var data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
     console.log(data._id);
-    console.log(rid)
+    console.log(rid);
+    console.log(chout)
     
     this.RoomCartService.postRoomCart(data._id,rid).subscribe(
       res =>{

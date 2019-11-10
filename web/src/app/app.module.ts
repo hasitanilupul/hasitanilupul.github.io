@@ -30,6 +30,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PagenotComponent } from './pagenot/pagenot.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -61,6 +62,7 @@ import { PagenotComponent } from './pagenot/pagenot.component';
     HttpClientModule,
     BrowserAnimationsModule,
     HttpModule,
+    ReactiveFormsModule
     
 
   ],

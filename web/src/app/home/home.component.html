@@ -257,8 +257,15 @@
                 placeholder="Name" required>
             <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
                 placeholder="Comment" required>
-
-
+            <div class="form-group">
+                <input type="file" name="productImage" (change)="addFile($event)" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && addrateservice.selectedRate.productImage.errors}" />
+                <br>
+                <button [disabled]="loading" class="btn btn-primary">Upload</button>
+                <div *ngIf="submitted && addrateservice.selectedRate.productImage.errors" class="invalid-feedback">
+                    <div *ngIf="addrateservice.selectedRate.productImage.errors.required">Front Image is required</div>
+                </div>
+            </div>
 
             <input type="submit" value="ADD" (click)="openForm()">
         </form>

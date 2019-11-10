@@ -2,10 +2,16 @@ const mongoose = require('mongoose');
 const Rating = mongoose.model('ratings');
 const Rate = require('../models/rating.model');
 
+const multer = require('multer');
+const upload = multer({ dest: 'upload/' });
+
 module.exports.newrate = (req, res, next) => {
+    const url = req.protocol + '://' + req.get('host')
+
     var rating = new Rating();
     rating.name = req.body.name;
     rating.comment = req.body.comment;
+    rating.img = url + '/public' + req.file.filename
     rating.save((err, doc) => {
         if (!err)
             res.send(doc);

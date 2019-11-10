@@ -9,6 +9,8 @@ import { resUser } from 'src/app/shared/resuser.model';
 
 
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -33,6 +35,8 @@ export class HomeComponent implements OnInit {
   data;
 
   rates: any[];
+  preview;
+  addrateForm;
 
 
 
@@ -76,6 +80,17 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+
+    const formData = new FormData();
+
+    Object.keys(this.addrateForm.value).forEach(element =>{
+      console.log(this.addrateForm.value[element] + '->' + element);
+      formData.append(element, this.addrateForm.value[element]);
+    });
+
+    this.addrateForm.addrate(formData);
+    console.log(formData);
+
     this.addrateservice.postRate(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
@@ -90,10 +105,28 @@ export class HomeComponent implements OnInit {
         }
       }
     );
-
-
     
   }
+
+  // const formData = new FormData();
+
+
+
+  addFile(event){
+    const file = (event.target as HTMLInputElement).files[0];
+    this.addrateForm.patchValue({
+      productImage: file
+    });
+    this.addrateForm.get('productImage').updateValueAndValidity()
+
+    //File preview
+    const reader = new FileReader();
+    reader.onload = () =>{
+      this.preview = reader.result as string;
+    }
+    reader.readAsDataURL(file)
+  }
+
 
   openForm() {
     if (this.val == true) {

@@ -20,7 +20,7 @@
     <div style="height: 218px">
       <hr>
       <h4 align="center">Details</h4><br>
-      🔹 Room type :&nbsp; 
+      🔹 Room type :&nbsp;
       {{room['type']}}
     </div>
   </div>
@@ -29,11 +29,11 @@
     <div style="height: 218px">
       <hr>
       <h4 align="center">FEATURES</h4><br>
-      🔹 Catagory : 
+      🔹 Catagory :
       {{room['catagory']}}<br>
-      🔹 AC : 
+      🔹 AC :
       {{room['ac']}}<br>
-      🔹 Capacity : 
+      🔹 Capacity :
       {{[room['capacity']]}}
 
     </div>
@@ -44,8 +44,17 @@
       <hr>
       Price<br>
       {{room['price']}}<br><br>
-      <input type="submit" (click)=onSubmit(room._id) value="BOOK NOW">
-      
+      <form>
+        <label for="chin">Check In &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input name="chin" type="date" id="name">
+
+        <label for="chout">Check Out &nbsp;</label>
+        <input name="chout" type="date">
+
+      </form>
+
+      <input type="submit" (click)=onSubmit(room._id,chout) value="BOOK NOW">
+
 
     </div>
   </div>

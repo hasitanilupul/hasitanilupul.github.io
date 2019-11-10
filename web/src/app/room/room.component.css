@@ -16,3 +16,42 @@
     height: 45mm;
   }
   
+
+
+
+/* calender */
+  /* Removes the clear button from date inputs */
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+/* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button { 
+  display: none;
+}
+
+/* Always display the drop down caret */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: #303030;
+}
+
+/* A few custom styles for date inputs */
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  color: #363636;
+  font-family: "Helvetica", arial, sans-serif;
+  font-size: 15px;
+  border:1px solid #ecf0f1;
+  background:transparent;
+  padding:2px;
+  display: inline-block !important;
+  visibility: visible !important;
+  border-radius: 11px;
+}
+
+input[type="date"], focus {
+  color: #e9e9e9;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;}

@@ -2,10 +2,13 @@ require('./config/config');
 require('./models/db');
 require('./config/passportConfig');
 
+
+
 const express = require('express');
 var bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
+    
 
 const rtsIndex = require('./routes/index.router');
 
