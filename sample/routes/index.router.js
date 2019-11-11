@@ -47,7 +47,7 @@ const jwtHelper = require('../config/jwtHelper');
 
 router.post('/register', ctrlUser.register);
 router.post('/newroom', ctrlAddroom.newroom);
-router.post('/newrate', upload.single('productImage'), ctrlRating.newrate);
+router.post('/newrate',  ctrlRating.newrate);
 router.post('/newfood', ctrlAddfood.newfood);
 router.post('/newcartR', ctrlcartR.newcartR);
 

@@ -7,6 +7,8 @@ import { resUser } from 'src/app/shared/resuser.model';
 import { element } from '@angular/core/src/render3';
 // import { HttpClient } from '@angular/common/http';
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 
@@ -46,12 +48,12 @@ export class HomeComponent implements OnInit {
 
   name:string;
   comment:string;
+  // imagg:any;
   
-  
 
 
 
-  constructor(private addrateservice: AddRateService, private router: Router, private resUserService: ResUserService) { }
+  constructor(private addrateservice: AddRateService, private router: Router, private resUserService: ResUserService, private _sanitizer: DomSanitizer) { }
 
 
 
@@ -93,34 +95,26 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    
 
-    // this.addrateForm = new FormGroup({
-    //   name: new FormControl(),
-    //   Comment: new FormControl(),
-    //   productImage: new FormControl()
-    // });
+    // const formData = new FormData();
 
-    const formData = new FormData();
-    // Object.keys(this.addrateForm.value).forEach(element => {
-    //   console.log(this.addrateForm.value[element] + '->' + element);
-    //   formData.append(element, this.addrateForm.value[element]);
-    // });
+    // formData.append('Image',this.preview);
+    // formData.append('Name',this.name);
+    // formData.append('Comment',this.comment);
 
-    formData.append('imgg',this.file, this.file.name);
-    formData.append('nameg',this.name);
-    formData.append('commentg',this.comment);
+    // this.imagg = formData.get('Image');
 
-    // this.addrateservice.postRate(this.file.value);
-    console.log(formData);
-    this.addrateservice.postRate(formData).subscribe(
+    
+    this.addrateservice.postRate(this.name,this.comment,this.preview).subscribe(
       res => {
-        console.log('yes');
+        console.log("yes");
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.refreshRateList();
       },
       err => {
-        console.log('no');
+        console.log("no");
         if (err.status === 422) {
           this.serverErroeMessages = err.error.join('<br/>');
         } else {
@@ -128,6 +122,13 @@ export class HomeComponent implements OnInit {
         }
       }
     );
+
+  
+
+
+    //get form data 
+    // console.log(formData.get('Image'));
+    
     
   }
 
@@ -143,7 +144,9 @@ getComment(event){
 }
 
   addFile(event) {
+    
     this.file = (event.target as HTMLInputElement).files[0];
+    console.log((event.target as HTMLInputElement).files[0]);
     // this.file.patchValue({
     //   productImage: this.file
     // });
@@ -153,8 +156,9 @@ getComment(event){
     const reader = new FileReader();
     reader.readAsDataURL(this.file);
     reader.onload = () => {
-      this.preview = reader.result as string;
+      this.preview = reader.result as string;      
     }
+    
     
   }
 

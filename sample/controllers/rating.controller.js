@@ -6,18 +6,21 @@ const multer = require('multer');
 const upload = multer({ dest: 'upload/' });
 
 module.exports.newrate = (req, res, next) => {
-    const url = req.protocol + '://' + req.get('host')
-
+    // const url = req.protocol + '://' + req.get('host')
     var rating = new Rating();
     rating.name = req.body.name;
     rating.comment = req.body.comment;
-    rating.img = url + '/public' + req.file.filename
+    rating.image = req.body.imagg;
+    // rating.img = url + '/public' + req.file.filename
     rating.save((err, doc) => {
-        if (!err)
-        
+        if (!err){
+            console.log("Ping")
             res.send(doc);
-        else
+        }
+        else{
+            console.log("err")
             res.send(err)
+        }
     })
 }
 

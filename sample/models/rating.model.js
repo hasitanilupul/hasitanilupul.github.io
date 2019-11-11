@@ -6,7 +6,10 @@ var ratingSchema = new mongoos.Schema({
     },
     comment:{
         type:String
-    }
+    },
+    image:{
+        type: String
+    },
 })
 
 ratingSchema.pre('save',function(next){

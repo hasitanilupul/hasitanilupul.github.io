@@ -10,6 +10,7 @@ import { FoodComponent } from './food/food.component';
 import { AddroomComponent } from './products/addroom/addroom.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PagenotComponent } from './pagenot/pagenot.component';
+import { CartComponent } from './cart/cart.component';
 
 
 export const appRoutes: Routes = [
@@ -45,6 +46,9 @@ export const appRoutes: Routes = [
     },
     {
         path: 'contactus', component: ContactusComponent,
+    },
+    {
+        path: 'cart', component:CartComponent,
     },
     {
         path: "**", component: PagenotComponent

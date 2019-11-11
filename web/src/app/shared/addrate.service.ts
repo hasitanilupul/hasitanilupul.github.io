@@ -11,7 +11,7 @@ export class AddRateService {
   selectedRate: Rate={
     name:'',
     comment:'',
-    productImage:''
+    imagg:'',
   };
 
   constructor(private http: HttpClient) { }
@@ -19,8 +19,14 @@ export class AddRateService {
   // postRate(rate : Rate){
   //   return this.http.post(environment.apiBaseUrl + '/newrate', rate);
   // }
-  postRate(rate : any){
-    return this.http.post(environment.apiBaseUrl + '/newrate', rate);
+  postRate(a,b,c){
+    const reqBody = {
+      name:a,
+      comment:b,
+      imagg:c,
+    };
+
+    return this.http.post(environment.apiBaseUrl + '/newrate', reqBody);
   }
 
   getAddRate(id) {

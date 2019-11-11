@@ -31,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PagenotComponent } from './pagenot/pagenot.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -50,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddroomComponent,
     ContactusComponent,
     PagenotComponent,
+    CartComponent,
     
   
   ],

@@ -221,7 +221,7 @@
         style="width: 90% ; background-color: transparent ; display:flex; overflow-x:scroll ; scroll-behavior: auto;">
         <div *ngFor="let rate of rates">
             <div class="rating-card">
-                <img src="../../assets/img/icons/single_user.png" style="height: 200p; width: 200px"><br>
+                <img src= "{{rate['image']}}" style="height: 200p; width: 200px ; border-radius: 15px;"><br>
                 <p>{{rate['name']}}</p>
                 <p>
                     {{rate['comment']}}
@@ -263,15 +263,17 @@
                 <input type="file" name="productImage" #productImage="ngModel"  [(ngModel)]="addrateservice.selectedRate.productImage" (change)="addFile($event)" 
                     [ngClass]="{ 'is-invalid' : submitted && addrateservice.selectedRate.productImage.errors}"   />
                 <br>
-                <button [disabled]="loading" class="btn btn-primary">Upload</button>
+                <!-- <button [disabled]="loading" class="btn btn-primary">Upload</button> -->
                 <div *ngIf="submitted && addrateservice.selectedRate.productImage.errors" class="invalid-feedback">
                     <div *ngIf="addrateservice.selectedRate.productImage.errors.required">Image is required</div>
                 </div>
             </div>
 
+            
 
 
             <input type="submit" value="ADD" (click)="openForm()">
+            <img style="height: 200px;" src={{preview}} />
         </form>
 
 

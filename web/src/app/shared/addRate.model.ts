@@ -1,5 +1,5 @@
 export class Rate {
     name: String;
-    comment: string;
-    productImage:any;
+    comment: String;
+    imagg: String;
 }
