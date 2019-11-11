@@ -15,7 +15,7 @@ export class UserService {
     id: '',
     email: '',
     tp: '',
-    role:'',
+    role:'3',
     password: '',
     saltSecret:'',
   };

@@ -17,6 +17,7 @@ export class SignUpComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    
   }
 
   onSubmit(form: NgForm) {
@@ -46,7 +47,7 @@ export class SignUpComponent implements OnInit {
       email: '',
       tp: '',
       password: '',
-      role: '',
+      role: '3',
       saltSecret: ''
     };
     form.resetForm();
