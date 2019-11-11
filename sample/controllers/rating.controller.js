@@ -20,6 +20,7 @@ module.exports.newrate = (req, res, next) => {
         else{
             console.log("err")
             res.send(err)
+            
         }
     })
 }
