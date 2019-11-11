@@ -13,10 +13,10 @@ module.exports.newrate = (req, res, next) => {
     rating.image = req.body.imagg;
     // rating.img = url + '/public' + req.file.filename
     rating.save((err, doc) => {
-        if (!err){
-            console.log("Ping")
+        if (!err)
+            
             res.send(doc);
-        }
+        
         else{
             console.log("err")
             res.send(err)
