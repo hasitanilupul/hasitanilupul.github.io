@@ -20,6 +20,9 @@ var addroomSchema = new mongoose.Schema({
     },
     capacity:{
         type:String
+    },
+    userPic:{
+        type:String
     }
 
     

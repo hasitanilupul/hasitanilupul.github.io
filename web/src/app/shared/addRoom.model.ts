@@ -5,5 +5,6 @@ export class Room {
     catagory: string;
     ac:string;
     capacity:string;
+    userPic:string;
 
 }

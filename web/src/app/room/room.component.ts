@@ -35,6 +35,7 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.AddRoomService.getRooms().subscribe(
       res => {
+        
         this.rooms = res['room']
         console.log(res['room'])
       },

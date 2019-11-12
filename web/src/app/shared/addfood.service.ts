@@ -13,12 +13,19 @@ export class AddFoodService {
     type: '',
     name: '',
     price:'',
+    foodPic:'',
   };
 
   constructor(private http: HttpClient) { }
 
-  postFood(food: Food) {
-    return this.http.post(environment.apiBaseUrl + '/newfood', food);
+  postFood(b,c,d,e) {
+    const reqBody={
+      type:b,
+      name:c,
+      price:d,
+      foodPic:e,
+    }
+    return this.http.post(environment.apiBaseUrl + '/newfood', reqBody);
   }
 
   getAddFood(id) {

@@ -24,6 +24,8 @@ export class AddroomComponent implements OnInit {
 
   rooms: any[];
   foods: any[];
+  pic;
+  preview;
   constructor(private addroomService: AddRoomService, private addfoodService: AddFoodService) { }
 
   ngOnInit() {
@@ -52,7 +54,7 @@ export class AddroomComponent implements OnInit {
 
     if (1 > form.value._id) {
       console.log(form.value._id);
-      this.addroomService.postRoom(form.value).subscribe(
+      this.addroomService.postRoom(form.value._id,form.value.type,form.value.price,form.value.catagory,form.value.ac,form.value.capacity,this.preview).subscribe(
         res => {
           this.showSucessMessage = true;
           setTimeout(() => this.showSucessMessage = false, 4000);
@@ -102,9 +104,10 @@ export class AddroomComponent implements OnInit {
   }
 
   one(form: NgForm) {
+    
         if (1 > form.value._id) {
-      console.log(form.value._id);
-    this.addfoodService.postFood(form.value).subscribe(
+          console.log(form.value.type);
+    this.addfoodService.postFood(form.value.type,form.value.name,form.value.price,this.preview).subscribe(
       res => {
         this.showSucessMessage1 = true;
         this.refreshFoodList();
@@ -122,6 +125,7 @@ export class AddroomComponent implements OnInit {
     );
 
   }else{
+    
     this.addfoodService.putFood(form.value).subscribe(
       res => {
         this.showSucessMessage1 = true;
@@ -187,7 +191,8 @@ export class AddroomComponent implements OnInit {
       price: '',
       ac: '',
       capacity: '',
-      catagory: ''
+      catagory: '',
+      userPic:'',
     };
   }
 
@@ -197,10 +202,30 @@ export class AddroomComponent implements OnInit {
       type: '',
       name: '',
       price: '',
+      foodPic: '',
     };
   }
 
+  addPic(event){
+    this.pic=(event.target as HTMLInputElement).files[0];
 
-  headsRoom = ['Type', 'Price', 'Catagory', 'AC', 'Capacity', ''];
-  headsFood = ['Type', 'Name', 'Price', ''];
+    const reader = new FileReader();
+    reader.readAsDataURL(this.pic);
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    }
+  }
+
+  addfoodPic(event){
+    this.pic=(event.target as HTMLInputElement).files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(this.pic);
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    }
+  }
+
+
+  headsRoom = ['Type', 'Price', 'Catagory', 'AC', 'Capacity', 'Image','Setting'];
+  headsFood = ['Type', 'Name', 'Price', 'Image','Setting'];
 }

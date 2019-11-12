@@ -19,6 +19,7 @@
               <td>{{room.catagory}}</td>
               <td>{{room.ac}}</td>
               <td>{{room.capacity}}</td>
+              <td style="padding: 0%;"><img style="height: 50px; padding: 0px; border-radius: 15px;" src="{{room.userPic}}"></td>
               <td>
                 <a (click)=onEdit(room) data-toggle="modal" data-target="#addroom">Edit &nbsp;</a>
                 <a (click)=deleteRoom(room._id,addroomForm)>Delete</a>
@@ -57,6 +58,10 @@
                   placeholder="AC">
                 <input type="text" #capacity="ngModel" [(ngModel)]="addroomService.selectedRoom.capacity"
                   name="capacity" placeholder="Capacity">
+                
+                <input type="file" name="userPic" #userPic="ngModel" [(ngModel)]="addroomService.selectedRoom.userPic" (change)="addPic($event)"><br>
+                <img style="height: 100px; border-radius: 15px;" src={{preview}} /><br>
+
                 <input type="submit" value="ADD">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </form>
@@ -90,6 +95,7 @@
               <td>{{food.type}}</td>
               <td>{{food.name}}</td>
               <td>{{food.price}}</td>
+              <td style="padding: 0%;"><img style="height: 50px; padding: 0px; border-radius: 15px;" src="{{food.foodPic}}"></td>
               <td>
                 <a (click)=onEdit1(food) data-toggle="modal" data-target="#addfood">Edit &nbsp;</a>
                 <a (click)=deleteFood(food._id,addfoodForm)>Delete</a>
@@ -126,6 +132,10 @@
                   placeholder="Food name">
                 <input type="text" #price="ngModel" [(ngModel)]="addfoodService.selectedFood.price" name="price"
                   placeholder="Price">
+
+                <input type="file" #foodPic="ngModel" [(ngModel)]="addfoodService.selectedFood.foodPic" name="foodPic" (change)="addfoodPic($event)">
+                <img style="height: 200px; border-radius: 15px;" src={{preview}} /><br>
+
                 <input type="submit" value="ADD">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </form>

@@ -13,7 +13,9 @@ module.exports.newroom = (req, res, next) => {
     addroom.catagory = req.body.catagory;
     addroom.ac = req.body.ac;
     addroom.capacity = req.body.capacity;
+    addroom.userPic = req.body.userPic;
     addroom.save((err, doc) => {
+        
         if (!err)
             res.send(doc);
         else

@@ -15,13 +15,24 @@ export class AddRoomService {
     catagory: '',
     ac: '',
     capacity: '',
+    userPic:'',
   };
 
 
   constructor(private http: HttpClient) { }
 
-  postRoom(room: Room) {
-    return this.http.post(environment.apiBaseUrl + '/newroom', room);
+  postRoom(a,b,c,d,e,f,g) {
+    const reqBody={
+      _id:a,
+      type:b,
+      price:c,
+      catagory:d,
+      ac:e,
+      capacity:f,
+      userPic:g
+
+    }
+    return this.http.post(environment.apiBaseUrl + '/newroom', reqBody);
   }
 
   getAddRoom(id) {

@@ -10,6 +10,9 @@ var addfoodSchema = new mongoose.Schema({
     },
     price:{
         type:String
+    },
+    foodPic:{
+        type:String
     }
 })
 

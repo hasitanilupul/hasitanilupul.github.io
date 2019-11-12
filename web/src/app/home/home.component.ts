@@ -21,8 +21,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   providers: [AddRateService, ResUserService]
 })
 export class HomeComponent implements OnInit {
- 
-  
+
+
 
 
   SERVER_URL = "http://localhost:3000/api/upload";
@@ -46,10 +46,10 @@ export class HomeComponent implements OnInit {
   preview;
   addrateForm;
 
-  name:string;
-  comment:string;
+  name: string;
+  comment: string;
   // imagg:any;
-  
+
 
 
 
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  
+
 
   ngOnInit() {
 
@@ -95,7 +95,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    
+
 
     // const formData = new FormData();
 
@@ -105,8 +105,8 @@ export class HomeComponent implements OnInit {
 
     // this.imagg = formData.get('Image');
 
-    
-    this.addrateservice.postRate(this.name,this.comment,this.preview).subscribe(
+
+    this.addrateservice.postRate(this.name, this.comment, this.preview).subscribe(
       res => {
         console.log("yes");
         this.showSucessMessage = true;
@@ -123,43 +123,38 @@ export class HomeComponent implements OnInit {
       }
     );
 
-  
+
 
 
     //get form data 
     // console.log(formData.get('Image'));
-    
-    
+
+
   }
 
 
-getName(evnt){
-  console.log(evnt.srcElement.value);
+  getName(evnt) {
+    console.log(evnt.srcElement.value);
     this.name = evnt.srcElement.value;
-}
+  }
 
-getComment(event){
-  console.log(event.srcElement.value);
-  this.comment = event.srcElement.value;
-}
+  getComment(event) {
+    console.log(event.srcElement.value);
+    this.comment = event.srcElement.value;
+  }
 
   addFile(event) {
-    
+
     this.file = (event.target as HTMLInputElement).files[0];
-    console.log((event.target as HTMLInputElement).files[0]);
-    // this.file.patchValue({
-    //   productImage: this.file
-    // });
-    // this.file.get('productImage').updateValueAndValidity()
 
     //File preview
     const reader = new FileReader();
     reader.readAsDataURL(this.file);
     reader.onload = () => {
-      this.preview = reader.result as string;      
+      this.preview = reader.result as string;
     }
-    
-    
+
+
   }
 
 
@@ -175,13 +170,11 @@ getComment(event){
 
   isLogged() {
     this.data = localStorage.getItem('token');
-    if (this.data) {
-      //  console.log(this.data);
+    if (this.data)
       return 1;
-    } else {
-      // console.log('No token')
+    else
       return 0;
-    }
+
   }
 
   logOut() {

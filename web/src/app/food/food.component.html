@@ -8,20 +8,21 @@
   <div>
     <hr>
       <div class="col-sm-3" *ngFor="let food of foods">
-        <p><img src="../../assets/img/vego rice.jpg" class="food-card"></p><br>
+        <p><img src="{{food.foodPic}}" class="food-card" style ="border-radius: 15px;"></p><br>
         <p>{{food['name']}}</p>
       </div>
   </div>
 </div>
-
+  
 <div class="container">
   <p>Dessert</p>
   <div>
     <hr>
     <div class="col-sm-3" *ngFor="let food of foods">
-      <p><img src="../../assets/img/ice 1.jpg" class="food-card"></p><br>
+      <p><img src="{{food.foodPic}}" class="food-card" style ="border-radius: 15px;"></p><br>
       <p>{{food['name']}}</p>
     </div>
   </div>
+
 
 </div>

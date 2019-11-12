@@ -130,7 +130,7 @@
 </div>
 
 <!-- Add reception Form -->
-<div *ngIf="role=='1'">
+<div *ngIf="role=='1'" align="center">
     <input class="button" type="button" value="Add receptionist" data-toggle="modal" data-target="#addRes">
     <a routerLink="/addroom"><input class="button" type="button" value="Add Room & Food"></a>
 </div>
@@ -186,8 +186,8 @@
             </div>
 
 
-            <input type="hidden"  #role="ngModel" [(ngModel)]="resUserService.selectedresUser.role" name="role"
-                placeholder="Role"  required [ngClass]="{'invalid-textbox' :addResForm.submitted && !role.valid }">
+            <input type="hidden" #role="ngModel" [(ngModel)]="resUserService.selectedresUser.role" name="role"
+                placeholder="Role" required [ngClass]="{'invalid-textbox' :addResForm.submitted && !role.valid }">
             <div *ngIf="addResForm.submitted && !id.valid">
                 <label class="validation-message">This field is required.</label>
             </div>
@@ -221,7 +221,7 @@
         style="width: 90% ; background-color: transparent ; display:flex; overflow-x:scroll ; scroll-behavior: auto;">
         <div *ngFor="let rate of rates">
             <div class="rating-card">
-                <img src= "{{rate['image']}}" style="height: 200p; width: 200px ; border-radius: 15px;"><br>
+                <img src="../../assets/img/64572.png" style="height: 200p; width: 200px ; border-radius: 15px;"><br>
                 <p>{{rate['name']}}</p>
                 <p>
                     {{rate['comment']}}
@@ -253,25 +253,10 @@
 
 
         <form #addrateForm="ngForm" (ngSubmit)="onSubmit(addrateForm);" style="width: 50%">
-            <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name" (change) = "getName($event)"
-                placeholder="Name" required>
-            <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"  (change) = "getComment($event)"
-                placeholder="Comment" required>
-
-            <div>
-                <label for="productImage" ></label>
-                <input type="file" name="productImage" #productImage="ngModel"  [(ngModel)]="addrateservice.selectedRate.productImage" (change)="addFile($event)" 
-                    [ngClass]="{ 'is-invalid' : submitted && addrateservice.selectedRate.productImage.errors}"   />
-                <br>
-                <!-- <button [disabled]="loading" class="btn btn-primary">Upload</button> -->
-                <div *ngIf="submitted && addrateservice.selectedRate.productImage.errors" class="invalid-feedback">
-                    <div *ngIf="addrateservice.selectedRate.productImage.errors.required">Image is required</div>
-                </div>
-            </div>
-
-            
-
-
+            <input type="text" #name="ngModel" [(ngModel)]="addrateservice.selectedRate.name" name="name"
+                (change)="getName($event)" placeholder="Name" required>
+            <input type="text" #comment="ngModel" [(ngModel)]="addrateservice.selectedRate.comment" name="comment"
+                (change)="getComment($event)" placeholder="Comment" required>
             <input type="submit" value="ADD" (click)="openForm()">
             <img style="height: 200px;" src={{preview}} />
         </form>

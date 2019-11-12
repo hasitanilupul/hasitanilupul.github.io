@@ -3,4 +3,5 @@ export class Food{
     type:string;
     name:string;
     price:string;
+    foodPic:string;
 }
