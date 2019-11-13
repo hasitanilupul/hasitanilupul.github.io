@@ -5,7 +5,7 @@ const _ = require('lodash');
 const User = mongoose.model('User');
 
 module.exports.register = (req, res, next) => {
-    console.log(req.body);
+    // console.log(req.body);
     var user = new User();
     user.fName = req.body.fName;
     user.lName = req.body.lName;
@@ -13,6 +13,7 @@ module.exports.register = (req, res, next) => {
     user.email = req.body.email;
     user.tp = req.body.tp;
     user.role = req.body.role;
+    user.userPic = req.body.userPic;
     user.password = req.body.password;
     user.save((err, doc) => {
         if (!err)
@@ -45,7 +46,7 @@ module.exports.userProfile = (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else{
-                return res.status(200).json({ status: true, user : _.pick(user,['_id','fName','lName','email','id','tp','role']) });
+                return res.status(200).json({ status: true, user : _.pick(user,['_id','fName','lName','email','id','tp','role','userPic']) });
             }
                
         }

@@ -63,8 +63,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
 
-    this.role = localStorage.getItem('admin');
 
+    this.role = localStorage.getItem('admin');
 
     this.addrateservice.getRates().subscribe(
       res => {
@@ -108,13 +108,11 @@ export class HomeComponent implements OnInit {
 
     this.addrateservice.postRate(this.name, this.comment, this.preview).subscribe(
       res => {
-        console.log("yes");
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.refreshRateList();
       },
       err => {
-        console.log("no");
         if (err.status === 422) {
           this.serverErroeMessages = err.error.join('<br/>');
         } else {
@@ -126,7 +124,7 @@ export class HomeComponent implements OnInit {
 
 
 
-    //get form data 
+    //get form data
     // console.log(formData.get('Image'));
 
 
@@ -143,7 +141,7 @@ export class HomeComponent implements OnInit {
     this.comment = event.srcElement.value;
   }
 
-  addFile(event) {
+  addPic(event) {
 
     this.file = (event.target as HTMLInputElement).files[0];
 
@@ -202,6 +200,7 @@ export class HomeComponent implements OnInit {
 
 
   addRes(form: NgForm) {
+    form.value.userPic=this.preview;
     this.resUserService.postresUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
@@ -227,6 +226,7 @@ export class HomeComponent implements OnInit {
       id: '',
       email: '',
       tp: '',
+      userPic:'',
       password: '',
       role: '2',
       // saltSecret: ''

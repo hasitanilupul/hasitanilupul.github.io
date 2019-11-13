@@ -19,7 +19,7 @@
               <td>{{room.catagory}}</td>
               <td>{{room.ac}}</td>
               <td>{{room.capacity}}</td>
-              <td style="padding: 0%;"><img style="height: 50px; padding: 0px; border-radius: 15px;" src="{{room.userPic}}"></td>
+              <td style="padding: 0%;"><img style="height: 50px;width: 70px; padding: 0px; border-radius: 15px;" src="{{room.userPic}}"></td>
               <td>
                 <a (click)=onEdit(room) data-toggle="modal" data-target="#addroom">Edit &nbsp;</a>
                 <a (click)=deleteRoom(room._id,addroomForm)>Delete</a>
@@ -95,7 +95,7 @@
               <td>{{food.type}}</td>
               <td>{{food.name}}</td>
               <td>{{food.price}}</td>
-              <td style="padding: 0%;"><img style="height: 50px; padding: 0px; border-radius: 15px;" src="{{food.foodPic}}"></td>
+              <td style="padding: 0%;"><img style="height: 50px;width: 70px; padding: 0px; border-radius: 15px;" src="{{food.foodPic}}"></td>
               <td>
                 <a (click)=onEdit1(food) data-toggle="modal" data-target="#addfood">Edit &nbsp;</a>
                 <a (click)=deleteFood(food._id,addfoodForm)>Delete</a>

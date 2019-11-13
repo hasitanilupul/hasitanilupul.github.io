@@ -55,6 +55,8 @@
     <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
   </div>
 
+  <input type="file" name="userPic" #userPic="ngModel" [(ngModel)]="userService.selectedUser.userPic" (change)="addPic($event)"><br>
+
  <input type="submit" value="Sign Up">
   <input type="reset" value="reset">
 

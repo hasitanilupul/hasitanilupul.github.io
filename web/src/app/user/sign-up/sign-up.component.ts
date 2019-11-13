@@ -13,6 +13,8 @@ export class SignUpComponent implements OnInit {
   tpRegex = /^(?:0|94|\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
+  pic;
+  preview;
 
   constructor(private userService: UserService) { }
 
@@ -21,6 +23,8 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    form.value.userPic=this.preview;
+    console.log(form.value.userPic);
     this.userService.postUser(form.value).subscribe(
       res => {
 
@@ -48,10 +52,22 @@ export class SignUpComponent implements OnInit {
       tp: '',
       password: '',
       role: '3',
-      saltSecret: ''
+      saltSecret: '',
+      userPic:'',
     };
     form.resetForm();
     this.serverErrorMessages = '';
+  }
+
+
+  addPic(event){
+    this.pic=(event.target as HTMLInputElement).files[0];
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.pic);
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    }
   }
 
 }

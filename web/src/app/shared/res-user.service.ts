@@ -16,7 +16,8 @@ export class ResUserService {
     id: '',
     email: '',
     tp: '',
-    role:'2',
+    userPic: '',
+    role: '2',
     password: '',
     // saltSecret:'',
   };

@@ -29,6 +29,9 @@ var userSchema = new mongoose.Schema({
     role:{
         type: String,
     },
+    userPic:{
+        type:String,
+    },
 
     password: {
         type: String,

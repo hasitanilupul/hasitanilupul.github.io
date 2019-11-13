@@ -18,6 +18,7 @@ export class UserService {
     role:'3',
     password: '',
     saltSecret:'',
+    userPic:'',
   };
 
 

@@ -8,4 +8,5 @@ export class resUser {
     role:string;
     password: string;
     // saltSecret:string;
+    userPic:string;
 }
