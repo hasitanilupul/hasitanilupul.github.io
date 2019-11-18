@@ -45,14 +45,15 @@ export class RoomComponent implements OnInit {
     );
   }
 
-  onSubmit(rid){
+  onSubmit(rid,roomtype){
 
     var data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
-    console.log(data._id);
+    console.log(data);
     console.log(rid);
+    console.log(roomtype);
     // console.log(chout)
     
-    this.RoomCartService.postRoomCart(data._id,rid,this.checkin,this.checkout).subscribe(
+    this.RoomCartService.postRoomCart(data._id,rid,roomtype,this.checkin,this.checkout).subscribe(
       res =>{
        console.log(res);
        alert('Succesfully Added')

@@ -53,10 +53,28 @@ module.exports.userProfile = (req, res, next) =>{
     );
 }
 
+
+
+
+module.exports.getuserbyid = (req, res, next) =>{
+    User.findById(req.body._id ,
+        (err, user) => {
+            if (!user)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else{
+                return res.status(200).json({ status: true, user : _.pick(user,['_id','fName','lName','email','id','tp','role','userPic']) });
+            }
+               
+        }
+    );
+}
+
+
+
 module.exports.upuser = (req, res, next) => {
     User.findByIdAndUpdate(req.body._id,
         {  
-            $set: {lName: req.body.lName, fName: req.body.fName, tp: req.body.tp, id: req.body.id, email: req.body.email}
+            $set: {lName: req.body.lName, fName: req.body.fName, tp: req.body.tp, id: req.body.id, email: req.body.email, userPic:req.body.userPic}
         },
         {
             new: true

@@ -45,6 +45,7 @@ module.exports.upfood = (req, res, next) => {
         addfood.type = req.body.type;
         addfood.name = req.body.name;
         addfood.price = req.body.price;
+        addfood.foodPic = req.body.foodPic;
         addfood.save((err, addfood) => {
             if (err)
                 res.status(500).json({ errmsg: err });

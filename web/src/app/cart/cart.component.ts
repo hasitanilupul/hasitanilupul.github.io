@@ -11,9 +11,45 @@ import { RoomCartService } from '../shared/room-cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private userServise : UserService, private addRoomService: AddRoomService, private roomCartServise : RoomCartService) { }
+
+  carts: any[];
+  cus: any[] = [];
+  constructor(private userServise: UserService, private addRoomService: AddRoomService, private roomCartServise: RoomCartService) { }
 
   ngOnInit() {
+
+    this.roomCartServise.getCarts().subscribe(
+      res => {
+        this.carts = res['cart'];
+        for (let i = 0; i < this.carts.length; i++) {
+        
+           
+          
+          
+           this.userServise.getUserProfilebyid(this.carts[i].custId).subscribe(res =>{
+
+             this.cus[i] = res;
+           },err =>{
+             console.log( err);
+           });
+          
+          console.log(this.carts[i].custId);
+          // console.log(this.cus[i]);
+        }
+      },
+      err => {
+        console.log(err)
+      }
+    )
+
   }
+
+  refreshcartList() {
+    this.roomCartServise.getCarts().subscribe((res) => {
+      this.carts = res['cart'];
+    })
+  }
+
+  heads = ['custId', 'RoomId','Room type', 'chech in', 'check out', 'Setting'];
 
 }

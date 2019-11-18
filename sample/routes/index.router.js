@@ -57,10 +57,16 @@ router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.get('/rateDetails', ctrlRating.ratingDetails);
 router.get('/foodDetails', ctrlAddfood.foodDetails);
+router.get('/roomCartDetails', ctrlcartR.roomcartDetails) ;
+
+
+router.get('/getuserbyid', ctrlUser.getuserbyid);
+
 
 router.get('/rooms', ctrlAddroom.rooms);
 router.get('/rates', ctrlRating.rates);
 router.get('/foods', ctrlAddfood.foods);
+router.get('/carts', ctrlcartR.carts);
 
 router.put('/uproom',ctrlAddroom.uproom);
 router.put('/upfood',ctrlAddfood.upfood);

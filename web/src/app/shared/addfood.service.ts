@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { Food } from './addFood.model';
 import { environment } from '../../environments/environment';
 

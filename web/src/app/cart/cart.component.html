@@ -1,3 +1,25 @@
-<p>
-  cart works!
-</p>
+<table style="background-color: black;">
+
+  <thead>
+    <tr>
+      <th *ngFor="let head of heads" scope="col">{{head}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let cart of carts">
+      <td>{{cart.custId}}</td>
+      <td>{{cart.roomId}}</td>
+      <td>{{cart.roomtype}}</td>
+      <td>{{cart.checkin}}</td>
+      <td>{{cart.checkout}}</td>
+      <td>
+        <a (click)=deleteRoom(cart._id,addroomForm)>Delete</a>
+      </td>
+      
+
+
+  </tbody>
+
+
+</table>

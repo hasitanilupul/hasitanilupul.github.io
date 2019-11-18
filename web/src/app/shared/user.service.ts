@@ -46,6 +46,11 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
 
+  getUserProfilebyid(id) {
+    return this.http.get(environment.apiBaseUrl + '/getuserbyid',{params:{_id: id}, observe: 'response'});
+  }
+
+
   putUser(user: User){
     return this.http.put('http://localhost:3000/api/upuser', user)
   }

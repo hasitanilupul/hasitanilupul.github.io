@@ -11,6 +11,7 @@ export class RoomCartService {
   selectedRoomCart: RoomCart={
     roomId:'',
     custId:'',
+    roomtype:'',
     checkin:'',
     checkout:'',
 
@@ -18,13 +19,28 @@ export class RoomCartService {
 
   constructor(private http:HttpClient) { }
 
-  postRoomCart(a,b,c,d){
+  postRoomCart(a,b,c,d,e){
     const reqBody = {
       roomId: a,
       custId: b,
-      checkin: c,
-      checkout: d
+      roomtype:c,
+      checkin: d,
+      checkout: e,
+      
     }
     return this.http.post(environment.apiBaseUrl + '/newcartR', reqBody);
   }
+
+
+  getCartR(id) {
+    return this.http.get(environment.apiBaseUrl + '/roomcartDetails?id='+ id);
+  }
+  
+  getCarts(){
+    return this.http.get(environment.apiBaseUrl + '/carts');
+  }
+  
+
+
 }
+

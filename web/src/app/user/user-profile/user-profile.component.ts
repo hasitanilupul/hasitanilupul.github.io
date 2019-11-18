@@ -15,6 +15,8 @@ export class UserProfileComponent implements OnInit  {
   userDetails = new User//{email:'',fName:'',id:'',lName:'',tp:'',_id:''};
   user: any[];
   role;
+  pic;
+  preview;
 
 
   showSucessMessage: boolean;
@@ -53,9 +55,11 @@ export class UserProfileComponent implements OnInit  {
   }
 
   onSubmit(form: NgForm) {
+    form.value.userPic=this.preview;
     this.userService.putUser(form.value).subscribe(
       res => {
         this.showSucessMessage1 = true;
+        location.reload();
 
         setTimeout(() => this.showSucessMessage1 = false, 4000);
       },
@@ -84,6 +88,16 @@ export class UserProfileComponent implements OnInit  {
       console.log()
     }
 
+  }
+
+  addPic(event){
+    this.pic=(event.target as HTMLInputElement).files[0];
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.pic);
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    }
   }
 
 }

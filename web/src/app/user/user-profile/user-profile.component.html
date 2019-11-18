@@ -5,7 +5,8 @@
         </tr>
         <tr>
             <td colspan="2" style="background-color: rgb(68, 68, 68);">
-                <div align="center"><img style="border-radius: 500px; width: 300px; height: 300px;" src="{{userDetails.userPic}}"></div>
+                <div align="center"><img style="border-radius: 500px; width: 300px; height: 300px;"
+                        src="{{userDetails.userPic}}"></div>
             </td>
         </tr>
     </thead>
@@ -60,10 +61,12 @@
                 placeholder="Email">
             <input type="text" #tp="ngModel" [(ngModel)]="userService.selectedUser.tp" name="tp" placeholder="tp">
             <input type="text" #id="ngModel" [(ngModel)]="userService.selectedUser.id" name="id" placeholder="ID">
-            <input type="hidden" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
-            required>
+            <input type="hidden" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password"
+                placeholder="Password" required>
             <input type="hidden" #saltSecret="ngModel" [(ngModel)]="userService.selectedUser.saltSecret"
                 name="saltSecret">
+            <input type="file" name="userPic" #userPic="ngModel" [(ngModel)]="userService.selectedUser.userPic"
+                (change)="addPic($event)"><br>
             <input type="submit" value="UPDATE">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>

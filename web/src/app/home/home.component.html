@@ -54,6 +54,8 @@
 
 
 <!-- nav bar buttons -->
+<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 69.5%; font-size: 15px;"><a routerLink="/cart">Resevations</a></p>
+
 <p *ngIf="role!=='3'"  style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE
     </a></p>
 
@@ -222,7 +224,7 @@
         style="width: 90% ; background-color: transparent ; display:flex; overflow-x:scroll ; scroll-behavior: auto;">
         <div *ngFor="let rate of rates">
             <div class="rating-card">
-                <img src="../../assets/img/64572.png" style="height: 200p; width: 200px ; border-radius: 15px;"><br>
+                <img src="../../assets/img/profile-pic-icon-6.jpg" style="height: 200p; width: 200px ; border-radius: 15px;"><br><br>
                 <p>{{rate['name']}}</p>
                 <p>
                     {{rate['comment']}}

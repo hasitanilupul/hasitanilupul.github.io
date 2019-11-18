@@ -46,6 +46,7 @@ module.exports.uproom = (req, res, next) => {
         addroom.catagory = req.body.catagory;
         addroom.ac = req.body.ac;
         addroom.capacity = req.body.capacity;
+        addroom.userPic = req.body.userPic;
         addroom.save((err, addroom) => {
             if (err)
                 res.status(500).json({ errmsg: err });

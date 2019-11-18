@@ -59,6 +59,7 @@ export class AddroomComponent implements OnInit {
           this.showSucessMessage = true;
           setTimeout(() => this.showSucessMessage = false, 4000);
           this.refreshRoomList();
+          location.reload();
         },
         err => {
           if (err.status === 422) {
@@ -73,11 +74,13 @@ export class AddroomComponent implements OnInit {
 
     } else {
       console.log(form.value._id);
+      form.value.userPic=this.preview;
       this.addroomService.putRoom(form.value).subscribe(
         res => {
           this.showSucessMessage = true;
           setTimeout(() => this.showSucessMessage = false, 4000);
           this.refreshRoomList();
+          location.reload();
         },
         err => {
           if (err.status === 422) {
@@ -112,6 +115,7 @@ export class AddroomComponent implements OnInit {
         this.showSucessMessage1 = true;
         this.refreshFoodList();
         setTimeout(() => this.showSucessMessage1 = false, 4000);
+        location.reload();
       },
       err => {
         if (err.status === 422) {
@@ -125,12 +129,13 @@ export class AddroomComponent implements OnInit {
     );
 
   }else{
-    
+    form.value.foodPic=this.preview;
     this.addfoodService.putFood(form.value).subscribe(
       res => {
         this.showSucessMessage1 = true;
         this.refreshFoodList();
         setTimeout(() => this.showSucessMessage1 = false, 4000);
+        location.reload();
       },
       err => {
         if (err.status === 422) {

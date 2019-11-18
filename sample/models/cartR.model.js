@@ -13,6 +13,9 @@ var cartRSchema = new mongoose.Schema({
     checkout:{
         type:String
     },
+    roomtype:{
+        type:String
+    }
 
 },
 {collection:'cartR'}

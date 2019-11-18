@@ -24,7 +24,6 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     form.value.userPic=this.preview;
-    console.log(form.value.userPic);
     this.userService.postUser(form.value).subscribe(
       res => {
 
