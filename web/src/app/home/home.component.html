@@ -54,7 +54,7 @@
 
 
 <!-- nav bar buttons -->
-<p *ngIf="isLogged()" style="position: absolute;top: 2%; left: 69.5%; font-size: 15px;"><a routerLink="/cart">Resevations</a></p>
+<p *ngIf="isLogged()" [style.left.%]="role==3? 75.5: 69.5 " style="position: absolute;top:2%; font-size: 15px;"><a routerLink="/cart">Resevations</a></p>
 
 <p *ngIf="role!=='3'"  style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE
     </a></p>

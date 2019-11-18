@@ -81,11 +81,12 @@ export class UserProfileComponent implements OnInit  {
     if (this.userDetails.email == "admin@gmail.com") {
       localStorage.setItem('admin', '1');
       //  console.log(localStorage.getItem('admin'))
-    }else if(this.userDetails.role ==null){
-      localStorage.setItem('admin','3')
+    }else if(this.userDetails.role == '2'){
+      localStorage.setItem('admin','2')
     }
     else{
-      console.log()
+      localStorage.setItem('admin', '3')
+      // console.log()
     }
 
   }
