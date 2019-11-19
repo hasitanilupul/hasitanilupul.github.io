@@ -66,7 +66,7 @@ module.exports.delete = (req, res, next) => {
 module.exports.findByDocumentIDS = (req, res, next) => {
     Room.findById(req.params._id, (err, doc) => {
 
-        console.log("========= Called ====== " + req.params._id);
+       
 
         if (!err) { res.send(doc); }
 

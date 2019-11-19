@@ -45,8 +45,6 @@ module.exports.roomcartDetails = (req, res, next) => {
                 //    console.log(rID);
                 //    console.log(cID);
 
-
-                    
                 //     request.get('http://localhost:3000/api/findRoomByDocumnetID/' + cID, function (res) {
   
                 //         // Buffer the body entirely for processing as a whole.
@@ -65,8 +63,6 @@ module.exports.roomcartDetails = (req, res, next) => {
                 //       req.on('error', function(e) {
                 //         console.log('ERROR: ' + e.message);
                 //       });
-                   
-                    
 
                 // }
 
