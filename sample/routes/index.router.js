@@ -30,6 +30,7 @@ var upload = multer({
     }
 });
 
+
 // router.post('/upload', upload.single('test'), (req, res, next) => {
 //     const url = req.protocol + '://' + req.get('host');
 //     res.send({ url: url +'/public/' + req.file.filename });
@@ -59,8 +60,12 @@ router.get('/rateDetails', ctrlRating.ratingDetails);
 router.get('/foodDetails', ctrlAddfood.foodDetails);
 router.get('/roomCartDetails', ctrlcartR.roomcartDetails) ;
 
-
+// router.get('/getUserByDocumnetID',jwtHelper.verifyJwtToken, ctrlUser.getUserByDocumentID);
 router.get('/getuserbyid', ctrlUser.getuserbyid);
+
+//////////////
+router.get('/findRoomByDocumnetID/:_id', ctrlAddroom.findByDocumentIDS);
+router.get('/getUserByID/:_id',ctrlUser.findByDocumentIDS);
 
 
 router.get('/rooms', ctrlAddroom.rooms);

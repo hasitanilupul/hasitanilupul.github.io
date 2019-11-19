@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { RoomCart } from './roomCart.model';
+import { RoomDTO } from '../dto/RoomDTO';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +43,9 @@ export class RoomCartService {
   }
   
 
+  getRoomDetails(id){
+    return this.http.get(environment.apiBaseUrl + '/findRoomByDocumnetID/' + id);
+  }
 
 }
 

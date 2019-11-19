@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { AddRoomService } from '../shared/add-room.service';
 import { RoomCartService } from '../shared/room-cart.service';
+import { CartDTO } from '../dto/CartDTO';
+import { RoomDTO } from '../dto/RoomDTO';
+import { UserDTO } from '../dto/UserDTO';
 
 
 @Component({
@@ -12,36 +15,63 @@ import { RoomCartService } from '../shared/room-cart.service';
 export class CartComponent implements OnInit {
 
 
-  carts: any[];
+  carts : CartDTO[] = [];
   cus: any[] = [];
-  constructor(private userServise: UserService, private addRoomService: AddRoomService, private roomCartServise: RoomCartService) { }
-
-  ngOnInit() {
+  constructor(private userServise: UserService, private addRoomService: AddRoomService, private roomCartServise: RoomCartService) { 
 
     this.roomCartServise.getCarts().subscribe(
       res => {
+        
         this.carts = res['cart'];
-        for (let i = 0; i < this.carts.length; i++) {
+        // for (let i = 0; i < this.carts.length; i++) {
         
            
           
           
-           this.userServise.getUserProfilebyid(this.carts[i].custId).subscribe(res =>{
+        //    this.userServise.getUserProfilebyid(this.carts[i].custId).subscribe(res =>{
 
-             this.cus[i] = res;
-           },err =>{
-             console.log( err);
-           });
+        //      this.cus[i] = res;
+        //    },err =>{
+        //      console.log( err);
+        //    });
           
-          console.log(this.carts[i].custId);
-          // console.log(this.cus[i]);
+        //   console.log(this.carts[i].custId);
+        //   // console.log(this.cus[i]);
+        // }
+
+       let i = 0;
+        for(let x of this.carts){
+          
+          this.roomCartServise.getRoomDetails(x['custId']).subscribe(y=> {
+              x.room = JSON.parse(JSON.stringify(y));
+          });
+
+          this.userServise.getUserByDocumnetID(x['roomId']).subscribe(z=> {
+            x.user = JSON.parse(JSON.stringify(z));
+          });
+
+        
+         
         }
+
+        console.log(this.carts);
+
       },
       err => {
         console.log(err)
       }
     )
 
+
+
+
+  }
+
+  roomD : any;
+
+  ngOnInit() {
+
+   
   }
 
   refreshcartList() {
@@ -50,6 +80,5 @@ export class CartComponent implements OnInit {
     })
   }
 
-  heads = ['custId', 'RoomId','Room type', 'chech in', 'check out', 'Setting'];
-
+  heads = ['Customer ID','Customer Name', 'Room Category','Room Type', 'chech in', 'check out', 'Setting'];
 }

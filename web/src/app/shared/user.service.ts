@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
+import { Observable } from 'rxjs';
+import { UserDTO } from '../dto/UserDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +55,10 @@ export class UserService {
 
   putUser(user: User){
     return this.http.put('http://localhost:3000/api/upuser', user)
+  }
+
+  getUserByDocumnetID(id) {
+    return this.http.get('http://localhost:3000/api/getUserByID/' + id);
   }
 
 

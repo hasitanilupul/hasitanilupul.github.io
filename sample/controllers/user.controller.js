@@ -54,6 +54,18 @@ module.exports.userProfile = (req, res, next) =>{
 }
 
 
+// get user by document ID
+
+module.exports.findByDocumentIDS = (req, res, next) => {
+    User.findById(req.params._id, (err, doc) => {
+        if (!err) { res.send(doc); }
+
+        else { console.log('Error in finding') }
+    })
+}
+
+
+
 
 
 module.exports.getuserbyid = (req, res, next) =>{
