@@ -25,9 +25,6 @@ export class CartComponent implements OnInit {
         this.carts = res['cart'];
         // for (let i = 0; i < this.carts.length; i++) {
         
-           
-          
-          
         //    this.userServise.getUserProfilebyid(this.carts[i].custId).subscribe(res =>{
 
         //      this.cus[i] = res;
@@ -49,8 +46,6 @@ export class CartComponent implements OnInit {
           this.userServise.getUserByDocumnetID(x['roomId']).subscribe(z=> {
             x.user = JSON.parse(JSON.stringify(z));
           });
-
-        
          
         }
 
@@ -61,9 +56,6 @@ export class CartComponent implements OnInit {
         console.log(err)
       }
     )
-
-
-
 
   }
 
@@ -79,6 +71,16 @@ export class CartComponent implements OnInit {
       this.carts = res['cart'];
     })
   }
+
+  deleteCart(_id: string) {
+    if (confirm('Are you sure delete this record ?') == true) {
+      this.roomCartServise.deletecart(_id).subscribe((res) => {
+        console.log(_id);
+        location.reload();
+      });
+    }
+  }
+
 
   heads = ['Customer ID','Customer Name', 'Room Category','Room Type', 'chech in', 'check out', 'Setting'];
 }

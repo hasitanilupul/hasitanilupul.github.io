@@ -47,5 +47,9 @@ export class RoomCartService {
     return this.http.get(environment.apiBaseUrl + '/findRoomByDocumnetID/' + id);
   }
 
+  deletecart(_id: string){
+    return this.http.delete('http://localhost:3000/api/deletecart/' + _id);
+  }
+
 }
 

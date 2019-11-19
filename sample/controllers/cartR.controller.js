@@ -84,3 +84,10 @@ module.exports.carts = (req, res, next) =>{
         }
     );
 }
+
+module.exports.deletecart = (req, res, next) => {
+    Cart.findByIdAndRemove(req.params._id, (err, doc) => {
+        if (!err){ res.send(doc);}
+        else{console.log('Error in deleting')}
+    })
+}

@@ -3,13 +3,6 @@ const router = express.Router();
 const multer = require('multer');
 
 
-// router.post('/upload', upload.single('test'), (req, res, next) => {
-//     const url = req.protocol + '://' + req.get('host');
-//     res.send({ url: url +'/public/' + req.file.filename });
-// }) testing
-
-
-
 const ctrlUser = require('../controllers/user.controller');
 const ctrlAddroom = require('../controllers/addroom.controller');
 const ctrlRating = require('../controllers/rating.controller');
@@ -53,6 +46,7 @@ router.put('/upuser',ctrlUser.upuser);
 router.delete('/delete/:_id',ctrlAddroom.delete);
 router.delete('/deletefood/:_id',ctrlAddfood.deletefood);
 router.delete('/deleteitem/:_id',ctrlRating.deleteitem);
+router.delete('/deletecart/:_id',ctrlcartR.deletecart)
 
 
 

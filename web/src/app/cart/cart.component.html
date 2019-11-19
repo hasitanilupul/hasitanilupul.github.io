@@ -14,13 +14,13 @@
         <tr *ngFor="let cart of carts">
             <td>{{ cart.user?.id }}</td>
           <td>{{ cart.user?.fName + " " + cart.user?.lName}}</td>
-         
+          
           <td>{{ cart.room?.catagory }}</td>
           <td>{{cart.roomtype}}</td>
           <td>{{cart.checkin}}</td>
           <td>{{cart.checkout}}</td>
           <td>
-            <a (click)=deleteRoom(cart._id,addroomForm)>Delete</a>
+            <a (click)=deleteCart(cart._id)>Delete</a>
           </td>
           
     </tr>
