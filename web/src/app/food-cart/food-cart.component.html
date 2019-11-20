@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+  <tr *ngFor="let item of cartService.getItems()">
+    <td>{{item.name}}</td>
+    <td>{{item.type}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.quantity}}</td>
+    <td>{{item.price*item.quantity}}</td>
+  </tr>
+</table>
+
+<button (click)="orderNow()"> ORDER NOW</button>

@@ -10,3 +10,4 @@ require('./addroom.model');
 require('./rating.model');
 require('./addfood.model');
 require('./cartR.model');
+require('./FoodOrder');
