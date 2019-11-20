@@ -7,12 +7,10 @@ var paymentSchema = new mongoos.Schema({
     price:{
         type:String
     },
-    fname:{
+    custId:{
         type: String
     },
-    lname:{
-        type: String
-    },
+
 })
 
 paymentSchema.pre('save',function(next){
