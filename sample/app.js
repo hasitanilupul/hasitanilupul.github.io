@@ -8,7 +8,7 @@ const express = require('express');
 var bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
-    
+
 
 const rtsIndex = require('./routes/index.router');
 
@@ -26,6 +26,7 @@ app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
 app.use('/', rtsIndex);
+app.use('/public', express.static('public'));
 
 
 

@@ -3,11 +3,13 @@ const Addfood = mongoose.model('addfoods');
 const Food = require('../models/addfood.model');
 
 module.exports.newfood = (req, res, next) => {
+    const url = req.protocol + '://' + req.get('host');
+
     var addfood = new Addfood();
     addfood.type = req.body.type;
     addfood.name = req.body.name;
     addfood.price = req.body.price;
-    addfood.foodPic = req.body.foodPic;
+    addfood.foodPic = url + '/public/' + req.file.filename;
     addfood.save((err, doc) => {
         if (!err)
             res.send(doc)
@@ -57,7 +59,7 @@ module.exports.upfood = (req, res, next) => {
 
 module.exports.deletefood = (req, res, next) => {
     Food.findByIdAndRemove(req.params._id, (err, doc) => {
-        if (!err){ res.send(doc);}
-        else{console.log('Error in deleting')}
+        if (!err) { res.send(doc); }
+        else { console.log('Error in deleting') }
     })
 }

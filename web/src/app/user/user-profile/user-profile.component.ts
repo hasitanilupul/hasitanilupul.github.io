@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../shared/user.service';
-import { Router } from "@angular/router";
-import { User } from 'src/app/shared/user.model';
-import { NgForm } from '@angular/forms';
-import { __param } from 'tslib';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../shared/user.service';
+import {Router} from '@angular/router';
+import {User} from 'src/app/shared/user.model';
+import {NgForm} from '@angular/forms';
+import {__param} from 'tslib';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,8 +11,8 @@ import { __param } from 'tslib';
   styleUrls: ['./user-profile.component.css'],
   providers: [UserService]
 })
-export class UserProfileComponent implements OnInit  {
-  userDetails = new User//{email:'',fName:'',id:'',lName:'',tp:'',_id:''};
+export class UserProfileComponent implements OnInit {
+  userDetails = new User;//{email:'',fName:'',id:'',lName:'',tp:'',_id:''};
   user: any[];
   role;
   pic;
@@ -25,12 +25,13 @@ export class UserProfileComponent implements OnInit  {
   serverErroeMessages1: String;
   showUpdateMessage: boolean;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
       res => {
-        
+
         this.userDetails = res['user'];
       },
       err => {
@@ -38,9 +39,9 @@ export class UserProfileComponent implements OnInit  {
 
       }
     );
-    
-    this.role=localStorage.getItem('admin');
-    
+
+    this.role = localStorage.getItem('admin');
+
 
   }
 
@@ -55,7 +56,7 @@ export class UserProfileComponent implements OnInit  {
   }
 
   onSubmit(form: NgForm) {
-    form.value.userPic=this.preview;
+    form.value.userPic = this.preview;
     this.userService.putUser(form.value).subscribe(
       res => {
         this.showSucessMessage1 = true;
@@ -78,27 +79,27 @@ export class UserProfileComponent implements OnInit  {
   }
 
   Admin() {
-    if (this.userDetails.email == "admin@gmail.com") {
+    /*if (this.userDetails.role == '1') {
       localStorage.setItem('admin', '1');
       //  console.log(localStorage.getItem('admin'))
-    }else if(this.userDetails.role == '2'){
-      localStorage.setItem('admin','2')
-    }
-    else{
-      localStorage.setItem('admin', '3')
+    } else if (this.userDetails.role == '2') {
+      localStorage.setItem('admin', '2');
+    } else {
+      localStorage.setItem('admin', '3');
       // console.log()
-    }
+    }*/
+    localStorage.setItem('admin', this.userDetails.role);
 
   }
 
-  addPic(event){
-    this.pic=(event.target as HTMLInputElement).files[0];
+  addPic(event) {
+    this.pic = (event.target as HTMLInputElement).files[0];
 
     const reader = new FileReader();
     reader.readAsDataURL(this.pic);
     reader.onload = () => {
       this.preview = reader.result as string;
-    }
+    };
   }
 
 }
