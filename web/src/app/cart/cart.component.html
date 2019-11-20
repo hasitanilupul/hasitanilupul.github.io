@@ -1,4 +1,4 @@
-<h2 align="center">Room Reservations</h2>
+<h2>Room Reservations</h2>
 
 <table style="background-color: black;">
   <thead>
@@ -23,7 +23,7 @@
   </tbody>
 </table><br>
 
-<h1>Food orders</h1>
+<h2>Food Orders</h2>
 
 <table *ngFor="let order of foodOrders">
   <tr>
@@ -32,6 +32,7 @@
     <th>Price</th>
     <th>Quantity</th>
     <th>Total</th>
+    <th>Settings</th>
   </tr>
   <tr *ngFor="let item of order.items">
     <td>{{item.food.name}}</td>
@@ -39,5 +40,6 @@
     <td>{{item.food.price}}</td>
     <td>{{item.quantity}}</td>
     <td>{{item.food.price*item.quantity}}</td>
+    <td><a>Delete</a></td>
   </tr>
 </table>

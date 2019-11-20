@@ -33,11 +33,13 @@ export class RoomComponent implements OnInit {
   rooms: any[];
   constructor(private AddRoomService: AddRoomService, private UserService:UserService, private RoomCartService:RoomCartService, private PayService:PayhereService) { }
    
+  but;
   data;
   checkout;
   checkin;
 
   ngOnInit() {
+    this.but=0;
     this.data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
     console.log(this.data._id)
     this.AddRoomService.getRooms().subscribe(
@@ -56,7 +58,6 @@ export class RoomComponent implements OnInit {
     payhere.onCompleted=(orderId)=>{
       alert('Payment is successfull '+orderId);
       this.sendrecord();
-      console.log('succdcdjk')
   }
 
   payhere.onDismissed = function onDismissed() {
@@ -72,6 +73,7 @@ export class RoomComponent implements OnInit {
   }
 
   onSubmit(rid,roomtype){
+    this.but=1;
 
     var data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
     console.log(data);
