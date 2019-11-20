@@ -57,7 +57,7 @@
 <p *ngIf="isLogged()" [style.left.%]="role==3? 75.5: 69.5 " style="position: absolute;top:2%; font-size: 15px;"><a
         routerLink="/cart">Resevations</a></p>
 
-<p *ngIf="role!=='3'" style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE
+<p *ngIf="role!=='3' && isLogged()" style="position: absolute;top: 2%; left: 77.5%; font-size: 15px;"><a routerLink="/addroom">MANAGE
     </a></p>
 
 <p *ngIf="!isLogged()" style="position: absolute;top: 2%; left: 83%; font-size: 15px;"><a routerLink="/login"><span
@@ -75,7 +75,7 @@
 
 <!-- middle buttons -->
 
-<div *ngIf="role=='3'" class="container" style="background-color: transparent ;">
+<div *ngIf="role=='3' || role=='2'" class="container" style="background-color: transparent ;">
     <p>
         <a href="../room/">
             <div class="col-sm-3">

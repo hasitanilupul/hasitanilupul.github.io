@@ -1,34 +1,24 @@
-<table style="background-color: black;">
+<h2 align="center">Room Reservations</h2>
 
+<table style="background-color: black;">
   <thead>
     <tr>
       <th *ngFor="let head of heads" scope="col">{{head}}</th>
     </tr>
   </thead>
-
   <tbody>
+    <tr *ngFor="let cart of carts">
+      <td>{{ cart.user?.id }}</td>
 
-  
+      <td>{{ cart.user?.fName + " " + cart.user?.lName}}</td>
 
-
-        <tr *ngFor="let cart of carts">
-            <td>{{ cart.user?.id }}</td>
-          <td>{{ cart.user?.fName + " " + cart.user?.lName}}</td>
-          
-          <td>{{ cart.room?.catagory }}</td>
-          <td>{{cart.roomtype}}</td>
-          <td>{{cart.checkin}}</td>
-          <td>{{cart.checkout}}</td>
-          <td>
-            <a (click)=deleteCart(cart._id)>Delete</a>
-          </td>
-          
+      <td>{{ cart.room?.catagory }}</td>
+      <td>{{cart.roomtype}}</td>
+      <td>{{cart.checkin}}</td>
+      <td>{{cart.checkout}}</td>
+      <td>
+        <a (click)=deleteCart(cart._id)>Delete</a>
+      </td>
     </tr>
-
-
-   
-
   </tbody>
-
-
 </table><br>

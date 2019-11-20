@@ -33,6 +33,15 @@ export class RoomCartService {
     return this.http.post(environment.apiBaseUrl + '/newcartR', reqBody);
   }
 
+  postFoodCart(a,b,c){
+    const reqBody ={
+      uid :a,
+      fid :b,
+      name :c
+    }
+    return this.http.post(environment.apiBaseUrl + '/newcartF', reqBody);
+  }
+
 
   getCartR(id) {
     return this.http.get(environment.apiBaseUrl + '/roomcartDetails?id='+ id);
@@ -50,6 +59,17 @@ export class RoomCartService {
   deletecart(_id: string){
     return this.http.delete('http://localhost:3000/api/deletecart/' + _id);
   }
+
+
+
+
+  // getFoods(){
+  //   return this.http.get(environment.apiBaseUrl + '/foods');
+  // }
+
+  // getFoodDetails(id){
+  //   return this.http.get(environment.apiBaseUrl + '/findFoomByDocumnetID/' + id);
+  // }
 
 }
 

@@ -10,19 +10,8 @@
       <div class="col-sm-3" *ngFor="let food of foods">
         <p><img src="{{food.foodPic}}" class="food-card" style ="border-radius: 15px;"></p><br>
         <p>{{food['name']}}</p>
+        <input type="submit" (click)=onSubmit(food._id,food.name) value="ORDER"><br><br>
       </div>
-  </div>
-</div>
-  
-<div class="container">
-  <p>Dessert</p>
-  <div>
-    <hr>
-    <div class="col-sm-3" *ngFor="let food of foods">
-      <p><img src="{{food.foodPic}}" class="food-card" style ="border-radius: 15px;"></p><br>
-      <p>{{food['name']}}</p>
-    </div>
-  </div>
 
-
+  </div>
 </div>
