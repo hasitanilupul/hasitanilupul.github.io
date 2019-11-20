@@ -8,8 +8,8 @@ module.exports.newpayment = (req, res, next) => {
     var payment = new Payment();
     payment.roomtype = req.body.roomtype;
     payment.price = req.body.price;
-    payment.fname = req.body.fname;
-    payment.lname = req.body.lname;
+    payment.custId = req.body._id;
+    
     
     payment.save((err, doc) => {
         if (!err)
