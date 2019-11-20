@@ -41,6 +41,7 @@ const ctrlRating = require('../controllers/rating.controller');
 const ctrlAddfood = require('../controllers/addfood.controller');
 const ctrlcartR = require('../controllers/cartR.controller');
 const ctrlPayment = require('../controllers/payment.controller');
+const ctrlOrder = require('../controllers/order.controller');
 
 const jwtHelper = require('../config/jwtHelper');
 
@@ -81,6 +82,10 @@ router.delete('/delete/:_id', ctrlAddroom.delete);
 router.delete('/deletefood/:_id', ctrlAddfood.deletefood);
 router.delete('/deleteitem/:_id', ctrlRating.deleteitem);
 router.delete('/deletecart/:_id', ctrlcartR.deletecart)
+
+router.post('/order/add', ctrlOrder.add);
+router.get('/order/get/user/:uid', ctrlOrder.getByUser);
+router.get('/order/get/all', ctrlOrder.getAll);
 
 
 

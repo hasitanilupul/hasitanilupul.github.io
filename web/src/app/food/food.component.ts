@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AddFoodService } from '../shared/addfood.service';
-import { RoomCartService } from '../shared/room-cart.service'
+import {Component, OnInit} from '@angular/core';
+import {AddFoodService} from '../shared/addfood.service';
+import {RoomCartService} from '../shared/room-cart.service';
+import {CartService} from '../cart/cart.service';
 
 @Component({
   selector: 'app-food',
@@ -10,13 +11,17 @@ import { RoomCartService } from '../shared/room-cart.service'
 export class FoodComponent implements OnInit {
 
   foods: any[];
-  constructor(private AddFoodService: AddFoodService, private roomCartService : RoomCartService) { }
+
+  constructor(private addFoodService: AddFoodService,
+              private roomCartService: RoomCartService,
+              public cartService: CartService) {
+  }
 
   ngOnInit() {
-    this.AddFoodService.getFoods().subscribe(
+    this.addFoodService.getFoods().subscribe(
       res => {
-        this.foods = res['food']
-        console.log(res['room'])
+        this.foods = res['food'];
+        console.log(res['room']);
       },
       err => {
         console.log(err);
@@ -24,21 +29,21 @@ export class FoodComponent implements OnInit {
     );
   }
 
-  onSubmit(fid,name){
+  onSubmit(fid, name) {
     var data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
-    this.roomCartService.postFoodCart(data._id,fid,name).subscribe(
-      res =>{
-       console.log(res);
-       alert('Succesfully Added')
+    this.roomCartService.postFoodCart(data._id, fid, name).subscribe(
+      res => {
+        console.log(res);
+        alert('Succesfully Added');
       },
-      err =>{
+      err => {
         if (err.status === 422) {
           console.log('err');
         } else {
           console.log('Contact admin');
         }
       }
-    )
+    );
 
   }
 

@@ -10,8 +10,18 @@
       <div class="col-sm-3" *ngFor="let food of foods">
         <p><img src="{{food.foodPic}}" class="food-card" style ="border-radius: 15px;"></p><br>
         <p>{{food['name']}}</p>
-        <input type="submit" (click)=onSubmit(food._id,food.name) value="ORDER"><br><br>
+        <div class="w-100 row">
+          <span class="col-5">Quantity : </span>
+          <input type="number" [(ngModel)]="food.quantity" [min]="1" style="color: black" class="col-5">
+        </div><br>
+        <input *ngIf="!cartService.contains(food)" type="submit" (click)="cartService.addItem(food)" [disabled]="!food.quantity" value="ORDER">
+        <input *ngIf="cartService.contains(food)" type="submit" (click)="cartService.removeItem(food)" value="REMOVE"><br><br>
       </div>
 
   </div>
+</div>
+
+<div style="position: absolute; top: 0; right: 0; z-index: 100; width: 100px; height: 100px;" [routerLink]="['../food-cart']">
+  <img src="../../../assets/img/icons/cart.jpg" width="50" height="50">
+  <span>{{cartService.getItemCount()}}</span>
 </div>
