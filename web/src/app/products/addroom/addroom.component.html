@@ -133,7 +133,8 @@
                 <input type="text" #price="ngModel" [(ngModel)]="addfoodService.selectedFood.price" name="price"
                   placeholder="Price">
 
-                <input type="file" #foodPic="ngModel" [(ngModel)]="addfoodService.selectedFood.foodPic" name="foodPic" (change)="addfoodPic($event)">
+                <img *ngIf="addfoodService.selectedFood.foodPic && !preview" [src]="addfoodService.selectedFood.foodPic" width="300" height="100">
+                <input type="file"  name="foodPic" (change)="addfoodPic($event)">
                 <img style="height: 200px; border-radius: 15px;" src={{preview}} /><br>
 
                 <input type="submit" value="ADD">
