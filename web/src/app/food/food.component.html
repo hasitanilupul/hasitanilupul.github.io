@@ -12,7 +12,7 @@
         <p>{{food['name']}}</p>
         <div class="w-100 row">
           <span class="col-5">Quantity : </span>
-          <input type="number" [(ngModel)]="food.quantity" [min]="1" style="color: black" class="col-5">
+          <input type="number" [(ngModel)]="food.quantity" [min]="1" style="color: black ; border-radius: 15px;" class="col-5">
         </div><br>
         <input *ngIf="!cartService.contains(food)" type="submit" (click)="cartService.addItem(food)" [disabled]="!food.quantity" value="ORDER">
         <input *ngIf="cartService.contains(food)" type="submit" (click)="cartService.removeItem(food)" value="REMOVE"><br><br>
@@ -22,6 +22,6 @@
 </div>
 
 <div style="position: absolute; top: 0; right: 0; z-index: 100; width: 100px; height: 100px;" [routerLink]="['../food-cart']">
-  <img src="../../../assets/img/icons/cart.jpg" width="50" height="50">
+  <img src="../../../assets/img/icons/cart.png" width="50" height="50">
   <span>{{cartService.getItemCount()}}</span>
 </div>

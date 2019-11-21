@@ -27,13 +27,12 @@ declare var payhere: any;
 export class RoomComponent implements OnInit {
 
 
-
+  but;
   roomPrice;
   roomType;
   rooms: any[];
   constructor(private AddRoomService: AddRoomService, private UserService:UserService, private RoomCartService:RoomCartService, private PayService:PayhereService) { }
    
-  but;
   data;
   checkout;
   checkin;
@@ -58,6 +57,7 @@ export class RoomComponent implements OnInit {
     payhere.onCompleted=(orderId)=>{
       alert('Payment is successfull '+orderId);
       this.sendrecord();
+      
   }
 
   payhere.onDismissed = function onDismissed() {
@@ -73,8 +73,8 @@ export class RoomComponent implements OnInit {
   }
 
   onSubmit(rid,roomtype){
-    this.but=1;
 
+    this.but=1;
     var data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
     console.log(data);
     // console.log(rid);
@@ -162,4 +162,3 @@ export class RoomComponent implements OnInit {
     }
 
 }
-
